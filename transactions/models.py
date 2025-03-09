@@ -57,17 +57,29 @@ class Transaction(Model):
 
     destination = CharField('Destino', max_length=55)
 
-    """Transaction File Field to do"""
-    # document = FileField()
+    # TODO(@ThyagoThayllan):    Transaction file field.
+    #   document = FileField()
 
     is_paid = BooleanField('Pago?', default=True)
+
+    # TODO(@ThyagoThayllan):    Relate Person to a Transaction.
+    """Person related to a Transaction.
+
+        - A Person can be related to many Transactions.
+        - A Transaction may or may not have a related Person.
+    """
+    # person = ForeignKey(Person, blank=True, null=True)
 
     transaction_type = IntegerField('Tipo de entrada', choices=TRANSACTION_TYPES)
 
     updated_at = DateTimeField('Editado em', auto_now=True)
 
-    """User related to Transaction"""
-    # user = OneToOneField()
+    # TODO(@ThyagoThayllan):    Relate User to a Transaction.
+    """User related to a Transaction.
+
+        - User has multiple Transactions.
+    """
+    # user = ForeignKey(User)
 
     def __str__(self) -> str:
         return f'{self.destination} | {self.amount} | {self.transaction_type_name}'

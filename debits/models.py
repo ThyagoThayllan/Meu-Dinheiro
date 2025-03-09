@@ -53,6 +53,13 @@ class Debit(Model):
 
     updated_at = DateTimeField('Editado em', auto_now=True)
 
+    # TODO(@ThyagoThayllan):    Relate User to a Debit.
+    """User related to a Debit.
+
+        - User has multiple Debits.
+    """
+    # user = ForeignKey(User)
+
     def __str__(self) -> str:
         return f'{self.financier} | {self.amount} | {self.status_name}'
 
