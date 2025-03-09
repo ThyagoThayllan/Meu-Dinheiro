@@ -1,0 +1,15 @@
+.bg-primary {
+    background-color: var(--primary) !important;
+}
+
+.btn-primary {
+    background-color: var(--primary) !important;
+}
+
+.bi-list {
+    color: var(--primary);
+}
+
+.bi-person-circle {
+    color: var(--white);
+}

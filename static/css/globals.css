@@ -1,0 +1,50 @@
+:root {
+    --black: #000;
+    --green: green;
+    --light: #f8f8f8;
+    --primary: rgb(0, 91, 47);
+    --red: rgb(194, 0, 0);
+    --white: #fff;
+}
+
+::selection {
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background-color: var(--light);
+    color: var(--black);
+    display: flex;
+    flex-flow: column;
+    max-height: 100vh !important;
+    min-height: 100vh !important;
+    overflow: hidden;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    color: var(--primary);
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary);
+}
+
+i {
+    font-size: 1.25rem;
+}
+
+ul li {
+    list-style: None;
+}
