@@ -4,8 +4,8 @@ from django.http import HttpResponse
 from django.views.generic import TemplateView
 
 
-class Debits(TemplateView):
-    template_name = 'debits/debits.html'
+class Debts(TemplateView):
+    template_name = 'debts/debts.html'
 
     def get(self, request: HttpRequest) -> HttpResponse:
         return render(request, self.template_name)
