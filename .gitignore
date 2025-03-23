@@ -1,0 +1,10 @@
+# VENVs
+.venv
+.venv/
+venv/
+
+# SQLite3
+*.sqlite3
+
+# General
+__pycache__/
