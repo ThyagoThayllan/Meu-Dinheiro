@@ -1,5 +1,4 @@
 # VENVs
-.venv
 .venv/
 venv/
 
@@ -9,3 +8,4 @@ venv/
 # General
 __pycache__/
 *.py[cod]
+*/__pycache__/
