@@ -1,7 +1,7 @@
 from django.urls import path
 
-from .views import Debits
+from .views import Debts
 
 urlpatterns = [
-    path('', Debits.as_view(), name='debits')
+    path('', Debts.as_view(), name='debts')
 ]

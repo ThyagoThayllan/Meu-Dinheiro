@@ -6,17 +6,17 @@ from django.db.models import DecimalField
 from django.db.models import IntegerField
 
 
-class Debit(Model):
-    """Debit status"""
+class Debt(Model):
+    """Debt status"""
     ACTIVE = 1
     INACTIVE = 2
 
-    DEBIT_STATUS = [
+    DEBT_STATUS = [
         (ACTIVE, 'Ativa'),
         (INACTIVE, 'Inativa'),
     ]
 
-    """Debit categories"""
+    """Debt categories"""
     CREDIT_CARD = 3
     FINANCING = 4
     LOAN = 5
@@ -24,7 +24,7 @@ class Debit(Model):
     SPECIAL_CHECK = 7
     OTHERS = 8
 
-    DEBIT_CATEGORIES = [
+    DEBT_CATEGORIES = [
         (CREDIT_CARD, 'Cartão de Crédito'),
         (FINANCING, 'Financiamento'),
         (LOAN, 'Empréstimo'),
@@ -35,7 +35,7 @@ class Debit(Model):
 
     amount = DecimalField('Valor da Dívida', decimal_places=2, max_digits=7)
 
-    category = IntegerField('Categoria', choices=DEBIT_CATEGORIES)
+    category = IntegerField('Categoria', choices=DEBT_CATEGORIES)
 
     created_at = DateTimeField('Criado em', auto_now_add=True)
 
@@ -49,14 +49,14 @@ class Debit(Model):
 
     is_paid = BooleanField('Paga?', default=False)
 
-    status = IntegerField('Status da Dívida', choices=DEBIT_STATUS)
+    status = IntegerField('Status da Dívida', choices=DEBT_STATUS)
 
     updated_at = DateTimeField('Editado em', auto_now=True)
 
-    # TODO(@ThyagoThayllan):    Relate User to a Debit.
-    """User related to a Debit.
+    # TODO(@ThyagoThayllan):    Relate User to a Debt.
+    """User related to a Debt.
 
-        - User has multiple Debits.
+        - User has multiple Debts.
     """
     # user = ForeignKey(User)
 

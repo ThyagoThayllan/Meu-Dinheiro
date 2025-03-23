@@ -8,3 +8,4 @@ venv/
 
 # General
 __pycache__/
+*.py[cod]
