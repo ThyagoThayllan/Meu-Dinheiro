@@ -60,3 +60,7 @@
 .navbar ul li a i {
     color: var(--white);
 }
+
+.auth-form {
+    width: 500px;
+}

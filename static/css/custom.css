@@ -2,8 +2,17 @@
     background-color: var(--primary) !important;
 }
 
+.btn {
+    border: 1px solid var(--black) !important;
+}
+
 .btn-primary {
     background-color: var(--primary) !important;
+    color: var(--white);
+}
+
+.text-primary {
+    color: var(--primary) !important;
 }
 
 .bi-list {
@@ -12,4 +21,14 @@
 
 .bi-person-circle {
     color: var(--white);
+}
+
+.form-control {
+    background-color: var(--white);
+    border-radius: 0.5rem;
+}
+
+.form-control:focus {
+    border-color: var(--primary) !important;
+    box-shadow: none !important;
 }
