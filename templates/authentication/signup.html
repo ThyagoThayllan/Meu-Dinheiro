@@ -1,0 +1,59 @@
+{% extends 'base-authentication.html' %}
+
+{% block title %}Entrar{% endblock title %}
+
+{% block content %}
+    <h1 class="mb-3">Cadastrar</h1>
+
+    <form action="{% url 'authentication:signup' %}" method="post" class="d-flex flex-column">
+        {% csrf_token %}
+        <div class="mb-3">
+            {{ form.username.label_tag }}
+            {{ form.username }}
+            {% for error in form.username.errors %}
+                <span class="text-danger">{{ error }}</span>
+            {% endfor %}
+        </div>
+        <div class="mb-3">
+            {{ form.email.label_tag }}
+            {{ form.email }}
+            {% for error in form.email.errors %}
+                <span class="text-danger">{{ error }}</span>
+            {% endfor %}
+        </div>
+        <div class="mb-3">
+            {{ form.cpf.label_tag }}
+            {{ form.cpf }}
+            {% for error in form.cpf.errors %}
+                <span class="text-danger">{{ error }}</span>
+            {% endfor %}
+        </div>
+        <div class="d-flex gap-2 mb-3">
+            <div class="w-50">
+                {{ form.first_name.label_tag }}
+                {{ form.first_name }}
+                {% for error in form.first_name.errors %}
+                    <span class="text-danger">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div class="w-50">
+                {{ form.last_name.label_tag }}
+                {{ form.last_name }}
+                {% for error in form.last_name.errors %}
+                    <span class="text-danger">{{ error }}</span>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="mb-3">
+            {{ form.password.label_tag }}
+            {{ form.password }}
+            {% for error in form.password.errors %}
+                <span class="text-danger">{{ error }}</span>
+            {% endfor %}
+        </div>
+        <button class="btn btn-primary" type="submit">Entrar</button>
+    </form>
+{% endblock content %}
+
+{% block scripts %}
+{% endblock scripts %}
