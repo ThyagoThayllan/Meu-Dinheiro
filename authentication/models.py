@@ -1,4 +1,5 @@
 from django.contrib.auth.models import AbstractUser
+from django.core.validators import MinLengthValidator
 from django.db.models import CharField
 from django.db.models import EmailField
 
@@ -9,15 +10,16 @@ class User(AbstractUser):
 
     cpf = CharField(
         'CPF',
+        validators=[MinLengthValidator(11, message='O CPF precisa ter 11 caracteres.')],
         max_length=11,
         unique=True,
-        error_messages={'unique': 'A user with that CPF already exists.'},
+        error_messages={'unique': 'Já existe um usuário com esse CPF.'},
     )
 
     email = EmailField(
         'E-mail',
         unique=True,
-        error_messages={'unique': 'A user with that E-mail already exists.'},
+        error_messages={'unique': 'Já existe um usuário com esse e-mail.'},
     )
 
     first_name = CharField('Nome', max_length=55)
