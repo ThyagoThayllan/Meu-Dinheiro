@@ -13,13 +13,11 @@ class User(AbstractUser):
         validators=[MinLengthValidator(11, message='O CPF precisa ter 11 caracteres.')],
         max_length=11,
         unique=True,
-        error_messages={'unique': 'Já existe um usuário com esse CPF.'},
     )
 
     email = EmailField(
         'E-mail',
         unique=True,
-        error_messages={'unique': 'Já existe um usuário com esse e-mail.'},
     )
 
     first_name = CharField('Nome', max_length=55)
