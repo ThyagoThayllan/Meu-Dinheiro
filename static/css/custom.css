@@ -11,6 +11,11 @@
     color: var(--white);
 }
 
+.error-msg {
+    color: rgb(255, 100, 100);
+    font-size: 0.875rem;
+}
+
 .text-primary {
     color: var(--primary) !important;
 }
