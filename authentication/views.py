@@ -1,5 +1,6 @@
 from django.contrib.auth import authenticate
 from django.contrib.auth import login
+from django.contrib.auth import get_user_model
 from django.http import HttpRequest
 from django.http import HttpResponse
 from django.shortcuts import redirect
@@ -7,8 +8,10 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 
 from authentication.forms import LoginForm
-from authentication.forms import SignUpForm
-from authentication.models import User
+from authentication.forms import UserForm
+
+
+User = get_user_model()
 
 
 class Login(TemplateView):
@@ -24,10 +27,20 @@ class Login(TemplateView):
             return render(request, self.template_name, {'form': form})
 
         email = request.POST['email']
-        password = request.POST['password']
+        password = form.cleaned_data['password']
 
-        user = authenticate(request, email=password, username=email)
-        breakpoint()
+        if not User.objects.filter(email=email).exists():
+            form.add_error('email', 'Não existe um usuário com esse e-mail.')
+            return render(request, self.template_name, {'form': form})
+
+        if not User.objects.get(email=email).check_password(password):
+            form.add_error('password', 'Senha incorreta, tente novamente.')
+            return render(request, self.template_name, {'form': form})
+
+        user = authenticate(request, username=email, password=password)
+
+        login(request, user)
+
         return redirect('dashboard:dashboard')
 
 
