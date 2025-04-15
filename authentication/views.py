@@ -64,6 +64,12 @@ class SignUp(TemplateView):
         if not form.is_valid():
             return render(request, self.template_name, {'form': form})
 
+        email = form.cleaned_data['email']
+
+        if User.objects.filter(email=email).exists():
+            form.add_error('email', 'Já existe um usuário com esse e-mail.')
+            return render(request, self.template_name, {'form': form})
+
         user = User.objects.create_user(**form.cleaned_data)
 
         login(request, user)
