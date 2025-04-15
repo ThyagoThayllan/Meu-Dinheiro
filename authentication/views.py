@@ -48,12 +48,16 @@ class SignUp(TemplateView):
     template_name = 'authentication/signup.html'
 
     def get(self, request: HttpRequest) -> HttpResponse:
-        return render(request, self.template_name, {'form': SignUpForm})
+        return render(request, self.template_name, {'form': UserForm()})
 
     def post(self, request: HttpRequest) -> HttpResponse:
-        form = SignUpForm(data=request.POST)
+        form = UserForm(data=request.POST)
 
         if not form.is_valid():
             return render(request, self.template_name, {'form': form})
+
+        user = User.objects.create_user(**form.cleaned_data)
+
+        login(request, user)
 
         return redirect('dashboard:dashboard')
