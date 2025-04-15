@@ -26,7 +26,7 @@ class Login(TemplateView):
         if not form.is_valid():
             return render(request, self.template_name, {'form': form})
 
-        email = request.POST['email']
+        email = form.cleaned_data['email']
         password = form.cleaned_data['password']
 
         if not User.objects.filter(email=email).exists():
