@@ -1,48 +1,52 @@
+from django.forms import CharField
+from django.forms import EmailField
 from django.forms import EmailInput
-from django.forms import ModelForm
+from django.forms import Form
 from django.forms import PasswordInput
 from django.forms import TextInput
 
-from .models import User
+
+class LoginForm(Form):
+    email = EmailField(
+        label='E-mail',
+        widget=EmailInput(attrs={'class': 'form-control', 'placeholder': 'Digite seu e-mail...'})
+    )
+
+    password = CharField(
+        label='Senha',
+        widget=PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Digite sua senha...'})
+    )
 
 
-class LoginForm(ModelForm):
-    class Meta:
-        model = User
+class UserForm(Form):
+    cpf = CharField(
+        label='CPF',
+        max_length=11,
+        min_length=11,
+        widget=TextInput(attrs={'class': 'form-control', 'placeholder': 'Digite seu CPF...'}),
+    )
 
-        fields = ['email', 'password']
+    email = EmailField(
+        label='E-mail',
+        widget=EmailInput(attrs={'class': 'form-control', 'placeholder': 'Digite seu e-mail...'})
+    )
 
-        widgets = {
-            'email': EmailInput(
-                attrs={'class': 'form-control', 'placeholder': 'Digite seu e-mail...'}
-            ),
-            'password': PasswordInput(
-                attrs={'class': 'form-control', 'placeholder': 'Digite sua senha...'}
-            ),
-        }
+    first_name = CharField(
+        label='Nome',
+        widget=TextInput(attrs={'class': 'form-control', 'placeholder': 'Digite seu nome...'})
+    )
 
+    last_name = CharField(
+        label='Sobrenome',
+        widget=TextInput(attrs={'class': 'form-control', 'placeholder': 'Digite seu sobrenome...'})
+    )
 
-class SignUpForm(ModelForm):
-    class Meta:
-        model = User
+    password = CharField(
+        label='Senha',
+        widget=PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Digite sua senha...'})
+    )
 
-        fields = ['cpf', 'email', 'first_name', 'last_name', 'password', 'username']
-
-        widgets = {
-            'cpf': TextInput(attrs={'class': 'form-control', 'placeholder': 'Digite seu CPF...'}),
-            'email': EmailInput(
-                attrs={'class': 'form-control', 'placeholder': 'Digite seu e-mail...'}
-            ),
-            'first_name': TextInput(
-                attrs={'class': 'form-control', 'placeholder': 'Digite seu nome...'}
-            ),
-            'last_name': TextInput(
-                attrs={'class': 'form-control', 'placeholder': 'Digite seu sobrenome...'}
-            ),
-            'password': PasswordInput(
-                attrs={'class': 'form-control', 'placeholder': 'Digite sua senha...'}
-            ),
-            'username': TextInput(
-                attrs={'class': 'form-control', 'placeholder': 'Digite seu usuário...'}
-            ),
-        }
+    username = CharField(
+        label='Usuário',
+        widget=TextInput(attrs={'class': 'form-control', 'placeholder': 'Digite seu usuário...'})
+    )
