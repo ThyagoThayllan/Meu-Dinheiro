@@ -4,15 +4,13 @@
 
 {% block content %}
     <h1>Página Inicial</h1>
+    <hr>
 
-    <p class="text-align-center">Bem vindo, {{ user }}!</p>
-
-    <p>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-        Sed amet libero perspiciatis doloribus, et iste non.
-        Repellat, aperiam libero ipsum, natus atque eligendi numquam,
-        consectetur odio et nostrum sequi deleniti.
-    </p>
+    {% if request.user.is_authenticated %}
+        <p>Bem vindo, {{ request.user.full_name }}!</p>
+    {% else %}
+        <p>Bem vindo ao <strong>Meu Dinheiro</strong>!</p>
+    {% endif %}
 {% endblock content %}
 
 {% block scripts %}
