@@ -1,11 +1,13 @@
 from django.contrib.auth import authenticate
 from django.contrib.auth import login
+from django.contrib.auth import logout
 from django.contrib.auth import get_user_model
 from django.http import HttpRequest
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.views.generic import TemplateView
+from django.views.generic import View
 
 from authentication.forms import LoginForm
 from authentication.forms import UserForm
@@ -42,6 +44,12 @@ class Login(TemplateView):
         login(request, user)
 
         return redirect('dashboard:dashboard')
+
+
+class Logout(View):
+    def get(self, request):
+        logout(request)
+        return redirect('authentication:login')
 
 
 class SignUp(TemplateView):
