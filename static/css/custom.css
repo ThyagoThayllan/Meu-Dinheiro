@@ -4,6 +4,12 @@
 
 .btn {
     border: 1px solid var(--black) !important;
+    opacity: 0.9;
+    transition: all 0.3s;
+}
+
+.btn:hover {
+    opacity: 1;
 }
 
 .btn-primary {
