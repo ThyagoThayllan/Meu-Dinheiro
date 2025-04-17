@@ -40,6 +40,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'meu_dinheiro.middleware.LoginRequiredMiddleware',
 ]
 
 ROOT_URLCONF = 'meu_dinheiro.urls'
