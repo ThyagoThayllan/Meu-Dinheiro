@@ -44,6 +44,8 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'meu_dinheiro.urls'
 
+PUBLIC_URLS = ['/login/', '/signup/']
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
