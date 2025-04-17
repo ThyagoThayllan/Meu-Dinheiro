@@ -5,6 +5,14 @@
     </div>
     <div class="bg-primary d-flex align-items-center gap-2 rounded px-2">
         <i class="bi bi-person-circle"></i>
-        <span class="mb-0 text-white">{{ request.user.full_name }}</span>
+        <span class="mb-0 text-white">
+            {% with name=request.user.full_name %}
+                {% if name %}
+                    {{ name }}
+                {% else %}
+                    Usuário
+                {% endif %}
+            {% endwith %}
+        </span>
     </div>
 </header>
