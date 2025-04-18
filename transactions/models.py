@@ -1,6 +1,7 @@
 from django.db.models import Model
 from django.db.models import BooleanField
 from django.db.models import CharField
+from django.db.models import DateField
 from django.db.models import DateTimeField
 from django.db.models import IntegerField
 from django.db.models import DecimalField
@@ -52,6 +53,8 @@ class Transaction(Model):
     category = IntegerField('Categoria', choices=CATEGORIES)
 
     created_at = DateTimeField('Criado em', auto_now_add=True)
+
+    date = DateField('Data', blank=True, null=True)
 
     description = CharField('Descrição', blank=True, max_length=255)
 
