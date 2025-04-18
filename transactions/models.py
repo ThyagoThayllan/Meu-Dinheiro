@@ -70,7 +70,7 @@ class Transaction(Model):
     """
     # person = ForeignKey(Person, blank=True, null=True)
 
-    transaction_type = IntegerField('Tipo de entrada', choices=TRANSACTION_TYPES)
+    transaction_type = IntegerField('Tipo', choices=TRANSACTION_TYPES)
 
     updated_at = DateTimeField('Editado em', auto_now=True)
 
