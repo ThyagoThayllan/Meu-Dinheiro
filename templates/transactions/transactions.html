@@ -1,19 +1,103 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static "plugins/datatables/datatables.min.css" %}">
+{% endblock styles %}
 
 {% block title %}Transações{% endblock title %}
 
 {% block content %}
     <h1>Transações</h1>
+    <hr>
 
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore vero quam perferendis
-        voluptatum? Neque dignissimos quas omnis esse quos, iure quidem consectetur sint iusto
-        porro aliquid qui ipsa vero excepturi.
-    </p>
+    <table class="table table-bordered" id="transactions">
+        <thead>
+            <tr class="bg-primary">
+                <th class="text-center" data-orderable="false">#</th>
+                <th>ID</th>
+                <th>Valor</th>
+                <th>Tipo</th>
+                <th>Categoria</th>
+                <th>Destino</th>
+                <th>Data</th>
+                <th>Pago?</th>
+                <th data-orderable="false">Ações</th>
+            </tr>
+        </thead>
 
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore vero quam perferendis
-        voluptatum? Neque dignissimos quas omnis esse quos, iure quidem consectetur sint iusto
-        porro aliquid qui ipsa vero excepturi.
-    </p>
+        <tbody>
+            <tr>
+                <td class="text-center"><a href="#">Ver</a></td>
+                <td>1</td>
+                <td>R$ 1000,00</td>
+                <td>Entrada</td>
+                <td>Trabalho</td>
+                <td>Moto</td>
+                <td data-order="2025-01-01">01/01/2025</td>
+                <td>Sim</td>
+                <td class="d-flex gap-2">
+                    <a
+                        class="bg-primary btn-action rounded text-center text-white w-100"
+                        href="#"
+                        role="button"
+                        title="Editar"
+                    >
+                        <i class="bi bi-pencil-square"></i>
+                    </a>
+                    <button
+                        class="bg-danger border-0 btn-action rounded text-center text-white w-100"
+                        title="Deletar"
+                        type="button"
+                    >
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 {% endblock content %}
+
+{% block scripts %}
+    <script src="{% static "plugins/datatables/datatables.min.js" %}"></script>
+    <script src="{% static "js/datatables-configs.js" %}"></script>
+{% endblock scripts %}
+
+{% block scripts_inline %}
+    <script>
+        const languageDataTableURL = '{% static "plugins/datatables/pt-BR.json" %}';
+
+        const columnsToExport = ':not(:first-child):not(:last-child)';
+
+        $('#transactions').DataTable({
+            buttons: [
+                {
+                    className: 'btn-action btn-sm bg-primary',
+                    text: 'Nova Transação',
+                },
+                {
+                    className: 'btn-action btn-sm',
+                    exportOptions: {
+                        columns: columnsToExport,
+                    },
+                    extend: 'excel',
+                    text: 'Exportar XLSX',
+                },
+                {
+                    className: 'btn-action btn-sm',
+                    exportOptions: {
+                        columns: columnsToExport,
+                    },
+                    extend: 'pdf',
+                    text: 'Exportar PDF',
+                },
+            ],
+            language: {
+                url: languageDataTableURL,
+            },
+            layout: dataTableLayout,
+            order: [[1, 'desc']],
+            responsive: true,
+        });
+    </script>
+{% endblock scripts_inline %}
