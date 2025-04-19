@@ -7,6 +7,10 @@
     --white: #fff;
 }
 
+:focus {
+    box-shadow: 0 0 5px var(--primary) !important;
+}
+
 ::selection {
     background-color: var(--primary);
     color: var(--white);

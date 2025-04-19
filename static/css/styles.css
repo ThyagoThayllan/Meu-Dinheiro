@@ -64,3 +64,13 @@
 .auth-form {
     width: 500px;
 }
+
+.btn-action {
+    opacity: 0.9;
+    transition: all 0.3s;
+}
+
+.btn-action:hover {
+    opacity: 1;
+    box-shadow: 0 0 5px var(--primary);
+}

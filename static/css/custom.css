@@ -17,9 +17,35 @@
     color: var(--white);
 }
 
+.btn-sm {
+    font-size: 0.875rem !important;
+    padding: 0.25rem 0.5rem !important;
+}
+
+.buttons-excel, .buttons-pdf {
+    background-color: var(--white) !important;
+    border: 1px solid var(--primary) !important;
+    color: var(--primary) !important;
+}
+
+.buttons-excel:hover, .buttons-pdf:hover {
+    background-color: var(--primary) !important;
+    color: var(--white) !important;
+}
+
+.dt-length {
+    align-items: center;
+    display: flex;
+    gap: 0.5rem;
+}
+
 .error-msg {
     color: rgb(255, 100, 100);
     font-size: 0.875rem;
+}
+
+.form-select:focus {
+    border-color: var(--primary) !important;
 }
 
 .text-primary {
@@ -42,4 +68,21 @@
 .form-control:focus {
     border-color: var(--primary) !important;
     box-shadow: none !important;
+}
+
+/*
+    Botões de Paginação da DataTable.
+*/
+.active > .page-link {
+    color: var(--white) !important;
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
+}
+
+.disabled > .page-link {
+    color: var(--black) !important;
+}
+
+.page-link {
+    color: var(--primary) !important;
 }
