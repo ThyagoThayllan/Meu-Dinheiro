@@ -71,6 +71,7 @@
 }
 
 .btn-action:hover {
-    opacity: 1;
     box-shadow: 0 0 5px var(--primary);
+    opacity: 1;
+    transform: scale(105%);
 }
