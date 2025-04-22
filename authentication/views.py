@@ -33,10 +33,12 @@ class Login(TemplateView):
 
         if not User.objects.filter(email=email).exists():
             form.add_error('email', 'Não existe um usuário com esse e-mail.')
+
             return render(request, self.template_name, {'form': form})
 
         if not User.objects.get(email=email).check_password(password):
             form.add_error('password', 'Senha incorreta, tente novamente.')
+
             return render(request, self.template_name, {'form': form})
 
         user = authenticate(request, username=email, password=password)
