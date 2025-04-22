@@ -48,7 +48,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'meu_dinheiro.urls'
 
-PUBLIC_URLS = ['/login/', '/signup/']
+PUBLIC_URLS = ['/admin/login/', '/login/', '/signup/']
 
 TEMPLATES = [
     {
