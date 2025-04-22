@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+
+{% block title %}Editar Transação{% endblock title %}
+
+{% block content %}
+    <h1>Editar Transação</h1>
+    <hr>
+
+    <div class="mb-2">
+        <a href="{% url 'transactions:transactions' %}">
+            <i class="bi bi-arrow-left-short"></i> Voltar
+        </a>
+    </div>
+
+    <div class="align-items-start d-flex gap-5 justify-content-between">
+        <form action="{% url "transactions:edit" transaction.pk %}" class="w-50" method="POST">
+            {% csrf_token %}
+            <div>
+                {{ form.amount.label_tag }}
+                {{ form.amount }}
+                {{ form.amount.errors }}
+            </div>
+            <div class="d-flex gap-2">
+                <div class="w-100">
+                    {{ form.category.label_tag }}
+                    {{ form.category }}
+                    {{ form.category.errors }}
+                </div>
+                <div class="w-100">
+                    {{ form.transaction_type.label_tag }}
+                    {{ form.transaction_type }}
+                    {{ form.transaction_type.errors }}
+                </div>
+            </div>
+            <div>
+                {{ form.date.label_tag }}
+                {{ form.date }}
+                {{ form.date.errors }}
+            </div>
+            <div>
+                {{ form.destination.label_tag }}
+                {{ form.destination }}
+                {{ form.destination.errors }}
+            </div>
+            <div>
+                {{ form.description.label_tag }}
+                {{ form.description }}
+                {{ form.description.errors }}
+            </div>
+            <div>
+                {{ form.is_paid.label_tag }}
+                {{ form.is_paid }}
+                {{ form.is_paid.errors }}
+            </div>
+            <div class="justify-content-end d-flex gap-2">
+                <button
+                    class="btn btn-action btn-outline-danger w-25"
+                    data-bs-toggle="modal"
+                    data-bs-target="#deleteTransactionModal"
+                    type="button"
+                >
+                    Deletar
+                </button>
+                <button class="btn btn-action btn-primary w-25" type="submit">Editar</button>
+            </div>
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} mt-3">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        </form>
+
+        <div class="bg-cream border border-primary pt-5 px-4 w-50">
+            <span class="fold"></span>
+            <span class="fold-2"></span>
+            <p class="d-flex gap-3 justify-content-between text-end">
+                ID: <span class="overflow-auto">{{ transaction.pk }}</span>
+            </p>
+            <p class="d-flex gap-3 justify-content-between text-end">
+                Valor: <span class="overflow-auto">R$ {{ transaction.amount }}</span>
+            </p>
+            <p class="d-flex gap-3 justify-content-between text-end">
+                Categoria: <span class="overflow-auto">{{ transaction.category_name }}</span>
+            </p>
+            <p class="d-flex gap-3 justify-content-between text-end">
+                Tipo: <span class="overflow-auto">{{ transaction.transaction_type_name }}</span>
+            </p>
+            <p class="d-flex gap-3 justify-content-between text-end">
+                Data: <span class="overflow-auto">{{ transaction.date|date:'d/m/Y'|default:'-' }}</span>
+            </p>
+            <p class="d-flex gap-3 justify-content-between text-end">
+                Destino: <span class="overflow-auto">{{ transaction.destination }}</span>
+            </p>
+            <p class="d-flex gap-3 justify-content-between text-end">
+                Descrição: <span class="overflow-auto">{{ transaction.description }}</span>
+            </p>
+            <p class="d-flex gap-3 justify-content-between text-end">
+                Pago: <span class="overflow-auto">{{ transaction.is_paid|yesno:'Sim,Não' }}</span>
+            </p>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deleteTransactionModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Confirmar Exclusão</h1>
+                    <button class="btn-close" data-bs-dismiss="modal" type="button"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Tem certeza que deseja deletar essa transação?</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-action btn-secondary" data-bs-dismiss="modal" type="button">
+                        Cancelar
+                    </button>
+                    <form action="{% url "transactions:delete" transaction.pk %}" method="POST">
+                        {% csrf_token %}
+                        <button class="btn btn-action btn-danger" type="submit">
+                            Deletar
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
