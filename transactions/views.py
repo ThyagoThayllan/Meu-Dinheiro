@@ -7,6 +7,26 @@ from django.shortcuts import render
 from django.views import View
 from django.views.generic import TemplateView
 
+from .models import Transaction
+from .forms import TransactionForm
+
+
+class DeleteTransaction(View):
+    def post(self, request: HttpRequest, pk: int) -> HttpResponseRedirect:
+        try:
+            transaction = Transaction.objects.get(pk=pk)
+        except Transaction.DoesNotExist:
+            error_message = (
+                f'Transação de ID <strong>"{pk}"</strong> não existe. Tente novamente.'
+            )
+            messages.error(request, error_message)
+
+            return redirect('transactions:transactions')
+
+        transaction.delete()
+
+        return redirect('transactions:transactions')
+
 
 class NewTransaction(View):
     def post(self, request: HttpRequest) -> HttpResponse | HttpResponseRedirect:
