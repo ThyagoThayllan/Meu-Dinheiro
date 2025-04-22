@@ -1,8 +1,12 @@
+from django.conf import settings
+
 from django.db.models import Model
 from django.db.models import BooleanField
+from django.db.models import CASCADE
 from django.db.models import CharField
 from django.db.models import DateField
 from django.db.models import DateTimeField
+from django.db.models import ForeignKey
 from django.db.models import IntegerField
 from django.db.models import DecimalField
 
@@ -77,12 +81,16 @@ class Transaction(Model):
 
     updated_at = DateTimeField('Editado em', auto_now=True)
 
-    # TODO(@ThyagoThayllan):    Relate User to a Transaction.
     """User related to a Transaction.
 
         - User has multiple Transactions.
     """
-    # user = ForeignKey(User)
+    user = ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=CASCADE,
+        related_name='transactions',
+        related_query_name='transaction',
+    )
 
     def __str__(self) -> str:
         return f'{self.destination} | {self.amount} | {self.transaction_type_name}'
