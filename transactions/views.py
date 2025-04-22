@@ -8,4 +8,10 @@ class Transactions(TemplateView):
     template_name = 'transactions/transactions.html'
 
     def get(self, request: HttpRequest) -> HttpResponse:
-        return render(request, self.template_name)
+        form = TransactionForm()
+
+        transactions = Transaction.objects.filter(user=request.user)
+
+        context = {'form': form, 'transactions': transactions}
+
+        return render(request, self.template_name, context)
