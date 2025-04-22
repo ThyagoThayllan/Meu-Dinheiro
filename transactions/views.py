@@ -28,6 +28,49 @@ class DeleteTransaction(View):
         return redirect('transactions:transactions')
 
 
+class EditTransaction(TemplateView):
+    template_name = 'transactions/edit-transaction.html'
+
+    def get(self, request: HttpRequest, pk: int) -> HttpResponse | HttpResponseRedirect:
+        try:
+            transaction = Transaction.objects.get(pk=pk)
+        except Transaction.DoesNotExist:
+            error_message = (
+                f'Transação de ID <strong>"{pk}"</strong> não existe. Tente novamente.'
+            )
+            messages.error(request, error_message)
+
+            return redirect('transactions:transactions')
+
+        form = TransactionForm(instance=transaction)
+
+        return render(request, self.template_name, {'form': form, 'transaction': transaction})
+
+    def post(self, request: HttpRequest, pk: int) -> HttpResponse | HttpResponseRedirect:
+        try:
+            transaction = Transaction.objects.get(pk=pk)
+        except Transaction.DoesNotExist:
+            error_message = (
+                f'Transação de ID <strong>"{pk}"</strong> não existe. Tente novamente.'
+            )
+            messages.error(request, error_message)
+
+            return redirect('transactions:transactions')
+
+        form = TransactionForm(data=request.POST, instance=transaction)
+
+        context = {'form': form, 'transaction': transaction}
+
+        if not form.is_valid():
+            return render(request, self.template_name, context)
+
+        form.save()
+
+        messages.success(request, 'Transação editada com sucesso.')
+
+        return render(request, self.template_name, context)
+
+
 class NewTransaction(View):
     def post(self, request: HttpRequest) -> HttpResponse | HttpResponseRedirect:
         form = TransactionForm(data=request.POST)
