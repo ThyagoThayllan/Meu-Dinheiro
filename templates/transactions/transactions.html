@@ -11,6 +11,12 @@
     <h1>Transações</h1>
     <hr>
 
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message|safe }}</div>
+        {% endfor %}
+    {% endif %}
+
     <table class="shadow table table-bordered" id="transactions">
         <thead>
             <tr>
