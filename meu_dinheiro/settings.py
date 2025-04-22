@@ -100,6 +100,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 AUTH_USER_MODEL = 'authentication.User'
 
+SESSION_COOKIE_AGE = timedelta(days=1).total_seconds()
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
