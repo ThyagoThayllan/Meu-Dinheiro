@@ -89,6 +89,67 @@
             {% endfor %}
         </tbody>
     </table>
+
+    <div class="modal fade" id="transactionModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="bg-light modal-header">
+                    <h1 class="modal-title fs-5">Nova Transação</h1>
+                    <button class="btn-close" data-bs-dismiss="modal" type="button"></button>
+                </div>
+                <form action="{% url "transactions:register" %}" method="POST">
+                    {% csrf_token %}
+                    <div class="bg-light modal-body">
+                        <div>
+                            {{ form.amount.label_tag }}
+                            {{ form.amount }}
+                            {{ form.amount.errors }}
+                        </div>
+                        <div class="d-flex gap-2">
+                            <div class="w-100">
+                                {{ form.category.label_tag }}
+                                {{ form.category }}
+                                {{ form.category.errors }}
+                            </div>
+                            <div class="w-100">
+                                {{ form.transaction_type.label_tag }}
+                                {{ form.transaction_type }}
+                                {{ form.transaction_type.errors }}
+                            </div>
+                        </div>
+                        <div>
+                            {{ form.date.label_tag }}
+                            {{ form.date }}
+                            {{ form.date.errors }}
+                        </div>
+                        <div>
+                            {{ form.destination.label_tag }}
+                            {{ form.destination }}
+                            {{ form.destination.errors }}
+                        </div>
+                        <div>
+                            {{ form.description.label_tag }}
+                            {{ form.description }}
+                            {{ form.description.errors }}
+                        </div>
+                        <div>
+                            {{ form.is_paid.label_tag }}
+                            {{ form.is_paid }}
+                            {{ form.is_paid.errors }}
+                        </div>
+                    </div>
+                    <div class="bg-light modal-footer">
+                        <button class="btn btn-action btn-secondary" data-bs-dismiss="modal" type="button">
+                            Cancelar
+                        </button>
+                        <button class="btn btn-action btn-primary" type="submit">
+                            Concluir
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 {% endblock content %}
 
 {% block scripts %}
@@ -102,10 +163,23 @@
 
         const columnsToExport = ':not(:first-child):not(:last-child)';
 
+        {% if form.errors %}
+            {% comment %}
+                The correct way to open a modal with Bootstrap.
+            {% endcomment %}
+            const modal = new bootstrap.Modal($('#transactionModal'));
+            modal.show();
+        {% endif %}
+
         $('#transactions').DataTable({
             buttons: [
                 {
-                    className: 'btn-action btn-sm bg-primary',
+                    attr: {
+                        'data-bs-toggle': 'modal',
+                        'data-bs-target': `#transactionModal`,
+                        id: 'newTransactionModalButton',
+                    },
+                    className: 'border border-primary bg-primary btn-action btn-sm',
                     text: 'Nova Transação',
                 },
                 {
