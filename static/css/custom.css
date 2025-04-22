@@ -1,15 +1,62 @@
+table thead tr {
+    border: 1px solid var(--primary) !important;
+}
+
+table thead tr th {
+    background-color: var(--primary) !important;
+    border: 1px solid var(--primary) !important;
+    color: var(--white) !important;
+}
+
+.bg-danger {
+    background-color: var(--red) !important;
+}
+
 .bg-primary {
     background-color: var(--primary) !important;
 }
 
 .btn {
-    border: 1px solid var(--black) !important;
-    opacity: 0.9;
-    transition: all 0.3s;
+    border: 0 !important;
+    opacity: 0.9 !important;
+    transition: all 0.3s !important;
 }
 
 .btn:hover {
-    opacity: 1;
+    opacity: 1 !important;
+}
+
+/*
+    It needed to be defined after the "btn" class to override it.
+ */
+
+.border {
+    border: 1px solid var(--black) !important;
+}
+
+.border-primary {
+    border-color: var(--primary) !important;
+}
+
+.btn-outline-danger {
+    border: 1px solid var(--red) !important;
+}
+
+.btn-outline-danger:hover {
+    background-color: var(--red) !important;
+    border: 1px solid var(--red) !important;
+    color: var(--white) !important;
+}
+
+.btn-outline-primary {
+    border-color: var(--primary) !important;
+    color: var(--primary) !important;
+    background: var(--white) !important;
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--primary) !important;
+    color: var(--white) !important;
 }
 
 .btn-primary {
@@ -17,20 +64,14 @@
     color: var(--white);
 }
 
+.btn-danger {
+    background-color: var(--red) !important;
+    color: var(--white) !important;
+}
+
 .btn-sm {
     font-size: 0.875rem !important;
     padding: 0.25rem 0.5rem !important;
-}
-
-.buttons-excel, .buttons-pdf {
-    background-color: var(--white) !important;
-    border: 1px solid var(--primary) !important;
-    color: var(--primary) !important;
-}
-
-.buttons-excel:hover, .buttons-pdf:hover {
-    background-color: var(--primary) !important;
-    color: var(--white) !important;
 }
 
 .dt-length {
@@ -70,8 +111,12 @@
     box-shadow: none !important;
 }
 
+.shadow {
+    box-shadow: 5px 5px 10px var(--black) !important;
+}
+
 /*
-    Botões de Paginação da DataTable.
+    Table pagination buttons.
 */
 .active > .page-link {
     color: var(--white) !important;

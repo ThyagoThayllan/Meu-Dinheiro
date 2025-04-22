@@ -5,6 +5,7 @@
     --primary: rgb(0, 91, 47);
     --red: rgb(194, 0, 0);
     --white: #fff;
+    --cream: #FFEEC0;
 }
 
 :focus {
@@ -14,6 +15,22 @@
 ::selection {
     background-color: var(--primary);
     color: var(--white);
+}
+
+::-webkit-scrollbar {
+    width: 0.75rem;
+    height: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-radius: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--primary);
+    border-radius: 10px;
+    border: 3px solid #f0f0f0;
 }
 
 * {
@@ -49,6 +66,25 @@ i {
     font-size: 1.25rem;
 }
 
+table {
+    font-size: 0.875rem !important;
+}
+
 ul li {
     list-style: None;
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    border: 2px solid var(--primary);
+    border-radius: 0.25rem;
+    cursor: pointer;
+    height: 20px;
+    transition: all 0.3s;
+    width: 20px;
+}
+
+input[type="checkbox"]:checked {
+    background-color: var(--primary);
+    border-color: var(--primary);
 }
