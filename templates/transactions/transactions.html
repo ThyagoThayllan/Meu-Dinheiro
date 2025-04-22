@@ -203,6 +203,10 @@
     <script>
         const languageDataTableURL = '{% static "plugins/datatables/pt-BR.json" %}';
 
+        const $deleteForm = $('#deleteForm');
+        const $deleteTransactionModal = $('#deleteTransactionModal');
+        const $transactionDetailModal = $('#transactionDetailModal');
+
         const columnsToExport = ':not(:first-child):not(:last-child)';
 
         {% if form.errors %}
