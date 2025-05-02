@@ -236,7 +236,7 @@
 
         {% if form.errors %}
             {% comment %}
-                The correct way to open a modal with Bootstrap.
+                The correct way to open a modal with Bootstrap 5.
             {% endcomment %}
             const modal = new bootstrap.Modal($('#transactionModal'));
             modal.show();
@@ -302,7 +302,7 @@
 
         $deleteTransactionModal.on('show.bs.modal', (event) => {
             {% comment %}
-                event.relatedTarget - Referência ao objeto que abriu o modal (Bootstrap).
+                event.relatedTarget - Reference to the object that open the modal (Bootstrap 5).
             {% endcomment %}
             const button = $(event.relatedTarget);
 
