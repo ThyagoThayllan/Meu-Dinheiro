@@ -24,7 +24,6 @@ class TransactionForm(ModelForm):
             'amount': NumberInput(
                 attrs={'class': 'form-control mb-2', 'placeholder': 'Valor da transação...'}
             ),
-            # 'category': Select(choices=Transaction.CATEGORIES, attrs={'class': 'form-select mb-2'}),
             'category': Select(attrs={'class': 'form-select mb-2'}),
             'date': DateInput(
                 attrs={'class': 'form-control mb-2', 'type': 'date'}, format='%Y-%m-%d'
@@ -36,9 +35,6 @@ class TransactionForm(ModelForm):
                 attrs={'class': 'form-control mb-2', 'placeholder': 'Destino da transação...'}
             ),
             'is_paid': CheckboxInput(attrs={'class': 'form-check-input mb-2 ms-2'}),
-            # 'transaction_type': Select(
-            #     choices=Transaction.TRANSACTION_TYPES, attrs={'class': 'form-select'}
-            # ),
             'transaction_type': Select(attrs={'class': 'form-select'}),
         }
 
