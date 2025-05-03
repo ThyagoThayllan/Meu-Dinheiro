@@ -239,6 +239,7 @@
     <script src="{% static 'plugins/bootstrap-datepicker/bootstrap-datepicker.pt-BR.min.js' %}"></script>
     <script src="{% static 'plugins/datatables/datatables-2.2.2.min.js' %}"></script>
     <script src="{% static 'js/datatables-configs.js' %}"></script>
+    <script src="{% static 'js/datepicker-configs.js' %}"></script>
 {% endblock scripts %}
 
 {% block scripts_inline %}
@@ -259,15 +260,7 @@
             modal.show();
         {% endif %}
 
-        $('.datepicker').datepicker({
-            format: "mm/yyyy",
-            startView: 1,
-            minViewMode: 1,
-            maxViewMode: 2,
-            todayBtn: "linked",
-            language: "pt-BR",
-            autoclose: true
-        });
+        $('.datepicker').datepicker(datepickerByMonth);
 
         $('#transactions').DataTable({
             buttons: [
