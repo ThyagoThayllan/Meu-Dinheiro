@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block styles %}
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap-datepicker/bootstrap-datepicker-1.10.0.min.css' %}">
     <link rel="stylesheet" href="{% static 'plugins/datatables/datatables-2.2.2.min.css' %}">
 {% endblock styles %}
 
@@ -10,6 +11,20 @@
 {% block content %}
     <h1>Transações</h1>
     <hr>
+
+    <div class="mb-4">
+        <form action="" class="align-items-center d-flex gap-2" method="GET">
+            <label for="period">Filtrar por período:</label>
+            <input
+                class="btn datepicker"
+                id="period"
+                name="period"
+                type="text"
+                value="{% now 'm/Y' %}"
+            >
+            <button class="btn btn-primary" type="submit">Filtrar</button>
+        </form>
+    </div>
 
     {% if messages %}
         {% for message in messages %}
@@ -220,7 +235,10 @@
 {% endblock content %}
 
 {% block scripts %}
+    <script src="{% static 'plugins/bootstrap-datepicker/bootstrap-datepicker-1.10.0.min.js' %}"></script>
+    <script src="{% static 'plugins/bootstrap-datepicker/bootstrap-datepicker.pt-BR.min.js' %}"></script>
     <script src="{% static 'plugins/datatables/datatables-2.2.2.min.js' %}"></script>
+    <script src="{% static 'js/datatables-configs.js' %}"></script>
 {% endblock scripts %}
 
 {% block scripts_inline %}
@@ -240,6 +258,16 @@
             const modal = new bootstrap.Modal($('#transactionModal'));
             modal.show();
         {% endif %}
+
+        $('.datepicker').datepicker({
+            format: "mm/yyyy",
+            startView: 1,
+            minViewMode: 1,
+            maxViewMode: 2,
+            todayBtn: "linked",
+            language: "pt-BR",
+            autoclose: true
+        });
 
         $('#transactions').DataTable({
             buttons: [

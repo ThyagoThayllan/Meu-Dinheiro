@@ -139,6 +139,12 @@ table tbody tr td {
 /*
     Datepicker customization.
 */
+.datepicker {
+    background-color: var(--white) !important;
+    border: 1px solid var(--primary) !important;
+    width: 100px;
+}
+
 .datepicker th {
     border-radius: 0 !important;
     --webkit-border-radius: 0 !important;
