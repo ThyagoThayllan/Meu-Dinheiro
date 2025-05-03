@@ -135,3 +135,16 @@ table tbody tr td {
 .page-link {
     color: var(--primary) !important;
 }
+
+/*
+    Datepicker customization.
+ */
+ .datepicker th {
+    border-radius: 0 !important;
+    --webkit-border-radius: 0 !important;
+ }
+
+.datepicker table tr td span.active.active {
+    background-color: var(--primary) !important;
+    background-image: none !important;
+}
