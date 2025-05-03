@@ -8,6 +8,10 @@ table thead tr th {
     color: var(--white) !important;
 }
 
+table tbody tr td {
+    vertical-align: middle;
+}
+
 .bg-danger {
     background-color: var(--red) !important;
 }
