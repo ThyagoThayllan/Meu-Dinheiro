@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block styles %}
-    <link rel="stylesheet" href="{% static "plugins/datatables/datatables.min.css" %}">
+    <link rel="stylesheet" href="{% static 'plugins/datatables/datatables-2.2.2.min.css' %}">
 {% endblock styles %}
 
 {% block title %}Transações{% endblock title %}
@@ -220,8 +220,7 @@
 {% endblock content %}
 
 {% block scripts %}
-    <script src="{% static "plugins/datatables/datatables.min.js" %}"></script>
-    <script src="{% static "js/datatables-configs.js" %}"></script>
+    <script src="{% static 'plugins/datatables/datatables-2.2.2.min.js' %}"></script>
 {% endblock scripts %}
 
 {% block scripts_inline %}
