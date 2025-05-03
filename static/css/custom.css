@@ -128,7 +128,7 @@ table tbody tr td {
     border-color: var(--primary) !important;
 }
 
-.disabled > .page-link {
+.disabled>.page-link {
     color: var(--black) !important;
 }
 
