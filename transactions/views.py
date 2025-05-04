@@ -16,9 +16,7 @@ class DeleteTransaction(View):
         try:
             transaction = Transaction.objects.get(pk=pk)
         except Transaction.DoesNotExist:
-            error_message = (
-                f'Transação de ID <strong>"{pk}"</strong> não existe. Tente novamente.'
-            )
+            error_message = f'Transação de ID <strong>"{pk}"</strong> não existe. Tente novamente.'
             messages.error(request, error_message)
 
             return redirect('transactions:transactions')
@@ -35,9 +33,7 @@ class EditTransaction(TemplateView):
         try:
             transaction = Transaction.objects.get(pk=pk)
         except Transaction.DoesNotExist:
-            error_message = (
-                f'Transação de ID <strong>"{pk}"</strong> não existe. Tente novamente.'
-            )
+            error_message = f'Transação de ID <strong>"{pk}"</strong> não existe. Tente novamente.'
             messages.error(request, error_message)
 
             return redirect('transactions:transactions')
@@ -50,9 +46,7 @@ class EditTransaction(TemplateView):
         try:
             transaction = Transaction.objects.get(pk=pk)
         except Transaction.DoesNotExist:
-            error_message = (
-                f'Transação de ID <strong>"{pk}"</strong> não existe. Tente novamente.'
-            )
+            error_message = f'Transação de ID <strong>"{pk}"</strong> não existe. Tente novamente.'
             messages.error(request, error_message)
 
             return redirect('transactions:transactions')
