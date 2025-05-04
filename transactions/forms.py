@@ -1,5 +1,4 @@
 from django.forms import CheckboxInput
-from django.forms import DateInput
 from django.forms import ModelForm
 from django.forms import NumberInput
 from django.forms import Select
@@ -25,9 +24,7 @@ class TransactionForm(ModelForm):
                 attrs={'class': 'form-control mb-2', 'placeholder': 'Valor da transação...'}
             ),
             'category': Select(attrs={'class': 'form-select mb-2'}),
-            'date': DateInput(
-                attrs={'class': 'form-control mb-2', 'type': 'date'}, format='%Y-%m-%d'
-            ),
+            'date': TextInput(attrs={'class': 'form-control mb-2', 'placeholder': 'DD/MM/YYYY'}),
             'description': TextInput(
                 attrs={'class': 'form-control mb-2', 'placeholder': 'Descrição da transação...'}
             ),
