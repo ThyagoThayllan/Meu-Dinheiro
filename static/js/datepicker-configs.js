@@ -1,3 +1,11 @@
+const datepickerByDay = {
+    autoclose: true,
+    format: "dd/mm/yyyy",
+    language: "pt-BR",
+    maxViewMode: 2,
+    todayBtn: "linked",
+};
+
 const datepickerByMonth = {
     autoclose: true,
     format: "mm/yyyy",
