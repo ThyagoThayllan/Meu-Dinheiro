@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.http import HttpRequest
@@ -83,8 +85,19 @@ class Transactions(TemplateView):
     def get(self, request: HttpRequest) -> HttpResponse:
         form = TransactionForm()
 
-        transactions = Transaction.objects.filter(user=request.user)
+        period = request.GET.get('period')
 
-        context = {'form': form, 'transactions': transactions}
+        if period:
+            month, year = period.strip().split('/')
+        else:
+            month, year = datetime.today().strftime('%m/%Y').split('/')
+
+        transactions = Transaction.objects.filter(
+            date__month=month, date__year=year, user=request.user
+        )
+
+        period = f'{month}/{year}'
+
+        context = {'form': form, 'period': period, 'transactions': transactions}
 
         return render(request, self.template_name, context)
