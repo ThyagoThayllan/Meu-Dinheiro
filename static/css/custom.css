@@ -154,3 +154,8 @@ table tbody tr td {
     background-color: var(--primary) !important;
     background-image: none !important;
 }
+
+.datepicker table tr td.active.active {
+    background-color: var(--primary) !important;
+    background-image: none !important;
+}
