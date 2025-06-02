@@ -5,8 +5,7 @@ from django.contrib import messages
 from django.http import HttpRequest
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
-from django.http import HttpRequest
-from django.http.response import HttpResponse
+from django.http import JsonResponse
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.views import View
