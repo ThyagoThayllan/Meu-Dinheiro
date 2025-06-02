@@ -406,7 +406,7 @@
             const button = $(event.relatedTarget);
 
             const transactionId = button.data('transaction-id');
-            const transactionAmount = button.data('transaction-amount');
+            const transactionAmount = formatCurrencyToBRL(button.data('transaction-amount'));
             const transactionType = button.data('transaction-type');
             const transactionCategory = button.data('transaction-category');
             const transactionDestination = button.data('transaction-destination');
@@ -415,7 +415,7 @@
             const transactionIsPaid = button.data('transaction-is-paid');
 
             $('#transactionId').text(transactionId);
-            $('#transactionAmount').text(`R$ ${transactionAmount}`);
+            $('#transactionAmount').text(transactionAmount);
             $('#transactionType').text(transactionType);
             $('#transactionCategory').text(transactionCategory);
             $('#transactionDestination').text(transactionDestination);
