@@ -385,6 +385,21 @@
             getTransactionsAndGenerateDataTable();
         });
 
+        $deleteTransactionModal.on('show.bs.modal', (event) => {
+            {% comment %}
+                event.relatedTarget - Reference to the object that open the modal (Bootstrap 5).
+            {% endcomment %}
+            const button = $(event.relatedTarget);
+
+            const currentTransactionId = $deleteForm.attr('action').split('/')[2];
+
+            const newTransactionId = button.data('transaction-id');
+
+            const newFormActionPath = $deleteForm.attr('action').replace(
+                currentTransactionId, newTransactionId
+            );
+
+            $deleteForm.attr('action', newFormActionPath);
         });
 
         $transactionDetailModal.on('show.bs.modal', (event) => {
@@ -407,23 +422,6 @@
             $('#transactionDescription').text(transactionDescription);
             $('#transactionDate').text(transactionDate);
             $('#transactionIsPaid').text(transactionIsPaid);
-        });
-
-        $deleteTransactionModal.on('show.bs.modal', (event) => {
-            {% comment %}
-                event.relatedTarget - Reference to the object that open the modal (Bootstrap 5).
-            {% endcomment %}
-            const button = $(event.relatedTarget);
-
-            const transactionId = button.data('transaction-pk');
-
-            const currentTransactionPk = $deleteForm.attr('action').split('/')[2];
-
-            const newFormActionPath = $deleteForm.attr('action').replace(
-                currentTransactionPk, transactionId
-            );
-
-            $deleteForm.attr('action', newFormActionPath);
         });
     </script>
 {% endblock scripts_inline %}
