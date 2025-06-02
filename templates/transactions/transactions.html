@@ -411,7 +411,7 @@
             const transactionCategory = button.data('transaction-category');
             const transactionDestination = button.data('transaction-destination');
             const transactionDescription = button.data('transaction-description');
-            const transactionDate = button.data('transaction-date');
+            const transactionDate = formatDateToDMY(button.data('transaction-date'));
             const transactionIsPaid = button.data('transaction-is-paid');
 
             $('#transactionId').text(transactionId);
