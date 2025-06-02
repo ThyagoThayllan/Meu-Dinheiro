@@ -221,40 +221,134 @@
 
         $('.datepicker').datepicker(datepickerByPeriod);
 
-        $('#transactions').DataTable({
-            buttons: [
-                {
-                    attr: {
-                        'data-bs-toggle': 'modal',
-                        'data-bs-target': `#transactionModal`,
-                        id: 'newTransactionModalButton',
+        const generateTransactionsTable = (transactions) => {
+            $transactionsTable.DataTable({
+                buttons: [
+                    {
+                        attr: {
+                            'data-bs-toggle': 'modal',
+                            'data-bs-target': `#transactionModal`,
+                            id: 'newTransactionModalButton',
+                        },
+                        className: 'border border-primary bg-primary btn-action btn-sm',
+                        text: 'Nova Transação',
                     },
-                    className: 'border border-primary bg-primary btn-action btn-sm',
-                    text: 'Nova Transação',
-                },
-                {
-                    className: 'border border-primary btn-action btn-outline-primary btn-sm',
-                    exportOptions: {
-                        columns: columnsToExport,
+                    {
+                        className: 'border border-primary btn-action btn-outline-primary btn-sm',
+                        exportOptions: {
+                            columns: columnsToExport,
+                        },
+                        extend: 'excel',
+                        text: 'Exportar XLSX',
                     },
-                    extend: 'excel',
-                    text: 'Exportar XLSX',
-                },
-                {
-                    className: 'border border-primary btn-action btn-outline-primary btn-sm',
-                    exportOptions: {
-                        columns: columnsToExport,
+                    {
+                        className: 'border border-primary btn-action btn-outline-primary btn-sm',
+                        exportOptions: {
+                            columns: columnsToExport,
+                        },
+                        extend: 'pdf',
+                        text: 'Exportar PDF',
                     },
-                    extend: 'pdf',
-                    text: 'Exportar PDF',
+                ],
+                columns: [
+                    {
+                        className: 'text-center',
+                        data: null,
+                        orderable: false,
+                        render: (_data, _type, row) => {
+                            return `
+                                <button
+                                    class="btn-action bg-transparent rounded text-primary"
+                                    data-bs-target="#transactionDetailModal"
+                                    data-bs-toggle="modal"
+                                    data-transaction-id="${row.id}"
+                                    data-transaction-amount="${row.amount}"
+                                    data-transaction-type="${row.transaction_type === {{ Transaction.EXPENSE }} ? 'Saída' : 'Entrada'}"
+                                    data-transaction-category="${transactionCategories[row.category]}"
+                                    data-transaction-destination="${row.destination || '-'}"
+                                    data-transaction-description="${row.description || '-'}"
+                                    data-transaction-date="${row.date || '-'}"
+                                    data-transaction-is-paid="${row.is_paid ? 'Sim' : 'Não'}"
+                                    title="Detalhes"
+                                    type="button"
+                                >
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                            `;
+                        },
+                    },
+                    {
+                        data: 'id',
+                        render: (data, _type, _row) => data,
+                    },
+                    {
+                        data: 'amount',
+                        render: (data, _type, _row) => formatCurrencyToBRL(data),
+                    },
+                    {
+                        data: 'transaction_type',
+                        render: (data, _type, _row) => {
+                            return data === {{ Transaction.EXPENSE }} ? 'Saída' : 'Entrada';
+                        },
+                    },
+                    {
+                        data: 'category',
+                        render: (data, _type, _row) => transactionCategories[data],
+                    },
+                    {
+                        data: 'destination',
+                        render: (data, _type, _row) => data,
+                    },
+                    {
+                        className: 'text-end',
+                        data: 'date',
+                        render: (data, _type, _row) => formatDateToDMY(data),
+                    },
+                    {
+                        data: 'is_paid',
+                        render: (data, _type, _row) => data ? 'Sim' : 'Não',
+                    },
+                    {
+                        data: null,
+                        orderable: false,
+                        render: (_data, _type, row) => {
+                            const url = '{% url "transactions:edit" 0 %}'.replace('0', row.id);
+
+                            return `
+                                <div class="d-flex gap-2">
+                                    <a
+                                        class="bg-primary btn-action rounded text-center text-white w-100"
+                                        href="${url}"
+                                        role="button"
+                                        title="Editar"
+                                    >
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                    <button
+                                        class="bg-danger border-0 btn-action rounded text-center text-white w-100"
+                                        data-bs-target="#deleteTransactionModal"
+                                        data-bs-toggle="modal"
+                                        data-transaction-id="${row.id}"
+                                        title="Deletar"
+                                        type="button"
+                                    >
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </div>
+                            `;
+                        },
+                    },
+                ],
+                data: transactions,
+                language: {
+                    url: languageDataTableURL,
                 },
-            ],
-            language: {
-                url: languageDataTableURL,
-            },
-            layout: dataTableLayout,
-            order: [[1, 'desc']],
-            responsive: true,
+                layout: dataTableLayout,
+                order: [[1, 'desc']],
+                responsive: true,
+            });
+        };
+
         });
 
         $transactionDetailModal.on('show.bs.modal', (event) => {
