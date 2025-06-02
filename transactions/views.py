@@ -88,15 +88,15 @@ class Transactions(TemplateView):
         period = request.GET.get('period')
 
         if period:
-            month, year = period.strip().split('/')
+            month, year = period.strip().split('-')
         else:
-            month, year = datetime.today().strftime('%m/%Y').split('/')
+            month, year = datetime.today().strftime('%m-%Y').split('-')
 
         transactions = Transaction.objects.filter(
             date__month=month, date__year=year, user=request.user
         )
 
-        period = f'{month}/{year}'
+        period = f'{month}-{year}'
 
         context = {
             'CATEGORIES': json.dumps(dict(Transaction.CATEGORIES)),
