@@ -46,63 +46,7 @@
                 <th data-orderable="false">Ações</th>
             </tr>
         </thead>
-
-        <tbody>
-            {% for transaction in transactions %}
-                <tr>
-                    <td class="text-center">
-                        <button id="button"
-                            class="btn-action bg-transparent rounded text-primary"
-                            data-bs-target="#transactionDetailModal"
-                            data-bs-toggle="modal"
-                            data-transaction-id="{{ transaction.pk }}"
-                            data-transaction-amount="{{ transaction.amount }}"
-                            data-transaction-type="{{ transaction.transaction_type_name }}"
-                            data-transaction-category="{{ transaction.category_name }}"
-                            data-transaction-destination="{{ transaction.destination|default:'-' }}"
-                            data-transaction-description="{{ transaction.description|default:'-' }}"
-                            data-transaction-date="{{ transaction.date|date:'d/m/Y'|default:'-' }}"
-                            data-transaction-is-paid="{{ transaction.is_paid|yesno:'Sim,Não' }}"
-                            title="Detalhes"
-                            type="button"
-                        >
-                            <i class="bi bi-eye"></i>
-                        </button>
-                    </td>
-                    <td>{{ transaction.pk }}</td>
-                    <td>R$ {{ transaction.amount }}</td>
-                    <td>{{ transaction.transaction_type_name }}</td>
-                    <td>{{ transaction.category_name }}</td>
-                    <td>{{ transaction.destination|default:'-' }}</td>
-                    <td class="text-end" data-order="{{ transaction.date|date:'Y-m-d' }}">
-                        {{ transaction.date|date:'d/m/Y'|default:'-' }}
-                    </td>
-                    <td>
-                        {{ transaction.is_paid|yesno:'Sim,Não' }}
-                    </td>
-                    <td class="d-flex gap-2">
-                        <a
-                            class="bg-primary btn-action rounded text-center text-white w-100"
-                            href="{% url "transactions:edit" transaction.pk %}"
-                            role="button"
-                            title="Editar"
-                        >
-                            <i class="bi bi-pencil-square"></i>
-                        </a>
-                        <button
-                            class="bg-danger border-0 btn-action rounded text-center text-white w-100"
-                            data-bs-target="#deleteTransactionModal"
-                            data-bs-toggle="modal"
-                            data-transaction-pk="{{ transaction.pk }}"
-                            title="Deletar"
-                            type="button"
-                        >
-                            <i class="bi bi-trash"></i>
-                        </button>
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
+        <tbody></tbody>
     </table>
 
     <div class="modal fade" id="transactionModal" tabindex="-1">
