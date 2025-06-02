@@ -42,11 +42,6 @@ table tbody tr td {
     border-color: var(--primary) !important;
 }
 
-.btn-close {
-    top: 0 !important;
-    margin: 0px !important;
-}
-
 .btn-outline-danger {
     border: 1px solid var(--red) !important;
 }
