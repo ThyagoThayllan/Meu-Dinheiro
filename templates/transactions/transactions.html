@@ -371,6 +371,20 @@
 
         getTransactionsAndGenerateDataTable();
 
+        $('#period-form').on('submit', (event) => {
+            event.preventDefault();
+
+            const newPeriod = $period.val();
+
+            if (currentPeriod === newPeriod) return;
+
+            currentPeriod = newPeriod;
+
+            $transactionsTable.DataTable().clear().destroy();
+
+            getTransactionsAndGenerateDataTable();
+        });
+
         });
 
         $transactionDetailModal.on('show.bs.modal', (event) => {
