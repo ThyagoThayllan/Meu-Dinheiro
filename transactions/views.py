@@ -2,6 +2,8 @@ from datetime import datetime
 import json
 
 from django.contrib import messages
+from django.http import HttpRequest
+from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.http import HttpRequest
 from django.http.response import HttpResponse
