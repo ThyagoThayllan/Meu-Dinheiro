@@ -98,6 +98,12 @@ class Transactions(TemplateView):
 
         period = f'{month}/{year}'
 
-        context = {'form': form, 'period': period, 'transactions': transactions}
+        context = {
+            'CATEGORIES': json.dumps(dict(Transaction.CATEGORIES)),
+            'Transaction': Transaction,
+            'form': form,
+            'period': period,
+            'transactions': transactions,
+        }
 
         return render(request, self.template_name, context)
