@@ -263,6 +263,8 @@
 
         const columnsToExport = ':not(:first-child):not(:last-child)';
 
+        let currentPeriod = $period.val();
+
         {% if form.errors %}
             {% comment %}
                 The correct way to open a modal with Bootstrap 5.
