@@ -249,7 +249,8 @@
         const languageDataTableURL = '{% static "plugins/datatables/pt-BR.json" %}';
         const transactionsAjaxURL = '{% url "transactions:transactions_ajax" "_PERIOD_" %}';
 
-        const $formDatepicker = $('#{{ form.date.id_for_label }}');
+        const transactionCategories = JSON.parse('{{ CATEGORIES|safe }}');
+
         const $deleteForm = $('#deleteForm');
         const $deleteTransactionModal = $('#deleteTransactionModal');
         const $transactionDetailModal = $('#transactionDetailModal');
