@@ -363,6 +363,12 @@
             return transactions;
         };
 
+        async function getTransactionsAndGenerateDataTable () {
+            const transactions = await getTransactions();
+
+            generateTransactionsTable(transactions);
+        }
+
         });
 
         $transactionDetailModal.on('show.bs.modal', (event) => {
