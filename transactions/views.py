@@ -109,3 +109,17 @@ class Transactions(TemplateView):
         }
 
         return render(request, self.template_name, context)
+
+
+class TransactionsAjax(View):
+    def get(self, request: HttpRequest, period: str) -> JsonResponse:
+        if period:
+            month, year = period.strip().split('-')
+        else:
+            month, year = datetime.today().strftime('%m-%Y').split('-')
+
+        transactions = Transaction.objects.filter(
+            date__month=month, date__year=year, user=request.user
+        ).values()
+
+        return JsonResponse({'data': list(transactions)})
