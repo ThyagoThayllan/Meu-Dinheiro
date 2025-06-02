@@ -349,6 +349,20 @@
             });
         };
 
+        const getTransactions = async () => {
+            const response = await fetch(transactionsAjaxURL.replace('_PERIOD_', currentPeriod));
+
+            if (response.status !== 200) {
+                throw new Error(`Erro ao carregar Transações - Status ${response.status}`);
+            }
+
+            const data = await response.json();
+
+            const transactions = data.data;
+
+            return transactions;
+        };
+
         });
 
         $transactionDetailModal.on('show.bs.modal', (event) => {
