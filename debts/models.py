@@ -94,7 +94,7 @@ class Debt(Model):
 
     @property
     def installment_amount(self):
-        return self.amount / self.installments
+        return round(self.amount / self.installments, 2)
 
     @property
     def remaining_amount(self):
