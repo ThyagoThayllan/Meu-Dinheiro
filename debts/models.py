@@ -72,8 +72,6 @@ class Debt(Model):
 
     is_paid = BooleanField('Paga?', default=False)
 
-    status = IntegerField('Status da Dívida', choices=DEBT_STATUS)
-
     updated_at = DateTimeField('Editado em', auto_now=True)
 
     """User related to a Debt.
@@ -103,5 +101,5 @@ class Debt(Model):
         return self.amount - (self.installment_amount * self.installments_paid)
 
     @property
-    def status_name(self):
-        return self.get_status_display()
+    def status(self):
+        return 'Inativa' if self.is_paid else 'Ativa'
