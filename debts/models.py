@@ -1,3 +1,7 @@
+from django.conf import settings
+from django.core.exceptions import ValidationError
+from django.core.validators import MaxValueValidator
+from django.core.validators import MinValueValidator
 from django.db.models import Model
 from django.db.models import BooleanField
 from django.db.models import CASCADE
@@ -35,17 +39,34 @@ class Debt(Model):
         (OTHERS, 'Outros'),
     ]
 
-    amount = DecimalField('Valor da Dívida', decimal_places=2, max_digits=7)
+    MAXIMUM_FINANCING_TERM = 420
+    MINIMUM_FINANCING_TERM = 1
+
+    amount = DecimalField(
+        'Valor da Dívida',
+        decimal_places=2,
+        max_digits=10,
+        validators=[
+            MaxValueValidator(99999999.99),
+            MinValueValidator(0.01),
+        ],
+    )
 
     category = IntegerField('Categoria', choices=DEBT_CATEGORIES)
 
     created_at = DateTimeField('Criado em', auto_now_add=True)
 
-    description = CharField('Descrição', max_length=255)
+    description = CharField('Descrição', max_length=100)
 
     financier = CharField('Financiador', max_length=55)
 
-    installments = IntegerField('Parcelas')
+    installments = IntegerField(
+        'Parcelas',
+        validators=[
+            MinValueValidator(MINIMUM_FINANCING_TERM),
+            MaxValueValidator(MAXIMUM_FINANCING_TERM),
+        ],
+    )
 
     installments_paid = IntegerField('Parcelas Pagas')
 
