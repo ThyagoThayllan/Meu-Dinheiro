@@ -1,8 +1,10 @@
 from django.db.models import Model
 from django.db.models import BooleanField
+from django.db.models import CASCADE
 from django.db.models import CharField
 from django.db.models import DateTimeField
 from django.db.models import DecimalField
+from django.db.models import ForeignKey
 from django.db.models import IntegerField
 
 
@@ -53,12 +55,16 @@ class Debt(Model):
 
     updated_at = DateTimeField('Editado em', auto_now=True)
 
-    # TODO(@ThyagoThayllan):    Relate User to a Debt.
     """User related to a Debt.
 
         - User has multiple Debts.
     """
-    # user = ForeignKey(User)
+    user = ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=CASCADE,
+        related_name='debts',
+        related_query_name='debt',
+    )
 
     def __str__(self) -> str:
         return f'{self.financier} | {self.amount} | {self.status_name}'
