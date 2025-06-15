@@ -103,3 +103,16 @@ class Debt(Model):
     @property
     def status(self):
         return 'Inativa' if self.is_paid else 'Ativa'
+
+    def clean(self):
+        super().clean()
+
+        if self.installments_paid > self.installments:
+            raise ValidationError(
+                {
+                    'installments_paid': (
+                        'Quantidade de parcelas pagas não pode ser maior do que o total de '
+                        'parcelas.'
+                    )
+                }
+            )
