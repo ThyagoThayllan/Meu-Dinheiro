@@ -37,3 +37,18 @@ class Debts(TemplateView):
         Debt.objects.create(**form.cleaned_data, user=request.user)
 
         return redirect('debts:debts')
+
+
+class DebtDelete(View):
+    def post(self, request: HttpRequest, pk: int) -> HttpResponseRedirect:
+        try:
+            debt = Debt.objects.get(pk=pk)
+        except Debt.DoesNotExist:
+            error_message = f'Dívida de ID <strong>"{pk}"</strong> não existe. Tente novamente.'
+            messages.error(request, error_message)
+
+            return redirect('debts:debts')
+
+        debt.delete()
+
+        return redirect('debts:debts')
