@@ -10,6 +10,10 @@
     z-index: 1;
 }
 
+.installments-col {
+    width: 125px !important;
+}
+
 .page {
     display: flex;
     flex: 1;
