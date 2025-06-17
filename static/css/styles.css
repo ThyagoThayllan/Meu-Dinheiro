@@ -1,3 +1,10 @@
+.debt-description-col {
+    max-width: 250px !important;
+    overflow: hidden;
+    text-wrap: nowrap;
+    text-overflow: ellipsis;
+}
+
 .header {
     box-shadow: 0 0 5px #000;
     z-index: 1;
