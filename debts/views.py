@@ -69,3 +69,25 @@ class DebtEdit(TemplateView):
         form = DebtForm(instance=debt)
 
         return render(request, self.template_name, {'debt': debt, 'form': form})
+
+    def post(self, request: HttpRequest, pk: int) -> HttpResponse | HttpResponseRedirect:
+        try:
+            debt = Debt.objects.get(pk=pk)
+        except Debt.DoesNotExist:
+            error_message = f'Dívida de ID <strong>"{pk}"</strong> não existe. Tente novamente.'
+            messages.error(request, error_message)
+
+            return redirect('debts:debts')
+
+        form = DebtForm(data=request.POST, instance=debt)
+
+        context = {'debt': debt, 'form': form}
+
+        if not form.is_valid():
+            return render(request, self.template_name, context)
+
+        form.save()
+
+        messages.success(request, 'Dívida editada com sucesso.')
+
+        return render(request, self.template_name, context)
