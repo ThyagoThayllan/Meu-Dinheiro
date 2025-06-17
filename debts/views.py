@@ -22,3 +22,18 @@ class Debts(TemplateView):
         context = {'debts': debts, 'form': form}
 
         return render(request, self.template_name, context)
+
+    def post(self, request: HttpRequest) -> HttpResponse:
+        form = DebtForm(data=request.POST)
+
+        if not form.is_valid():
+            debts = Debt.objects.filter(user=request.user)
+
+            return render(request, self.template_name, {'debts': debts, 'form': form})
+
+        if form.cleaned_data['installments'] == form.cleaned_data['installments_paid']:
+            form.cleaned_data['is_paid'] = True
+
+        Debt.objects.create(**form.cleaned_data, user=request.user)
+
+        return redirect('debts:debts')
