@@ -52,3 +52,20 @@ class DebtDelete(View):
         debt.delete()
 
         return redirect('debts:debts')
+
+
+class DebtEdit(TemplateView):
+    template_name = 'debts/debt-edit.html'
+
+    def get(self, request: HttpRequest, pk: int) -> HttpResponse | HttpResponseRedirect:
+        try:
+            debt = Debt.objects.get(pk=pk)
+        except Debt.DoesNotExist:
+            error_message = f'Dívida de ID <strong>"{pk}"</strong> não existe. Tente novamente.'
+            messages.error(request, error_message)
+
+            return redirect('debts:debts')
+
+        form = DebtForm(instance=debt)
+
+        return render(request, self.template_name, {'debt': debt, 'form': form})
