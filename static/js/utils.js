@@ -1,5 +1,7 @@
 const formatCurrencyToBRL = (value) => {
-    return Number(value).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    const normalizedData = value.replace(/\./g, '').replace(',', '.');
+
+    return Number(normalizedData).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 };
 
 const formatDateToDMY = (date) => {
