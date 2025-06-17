@@ -52,7 +52,7 @@ class Transaction(Model):
         (OTHERS, 'Outros'),
     ]
 
-    amount = DecimalField('Valor', decimal_places=2, max_digits=7)
+    amount = DecimalField('Valor', decimal_places=2, max_digits=10)
 
     category = IntegerField('Categoria', choices=CATEGORIES)
 
