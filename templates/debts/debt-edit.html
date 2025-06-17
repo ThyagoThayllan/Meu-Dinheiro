@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block title %}Editar Dívida{% endblock title %}
+
+{% block content %}
+    <h1>Editar Dívida</h1>
+    <hr>
+
+    <div class="mb-2">
+        <a href="{% url 'debts:debts' %}">
+            <i class="bi bi-arrow-left-short"></i> Voltar
+        </a>
+    </div>
+
+    <div>
+        <form action="{% url "debts:edit" debt.pk %}" class="w-50" method="POST">
+            {% csrf_token %}
+
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} mb-3">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+
+            <div class="mb-2">
+                {{ form.description.label_tag }}
+                {{ form.description }}
+                {{ form.description.errors }}
+            </div>
+            <div class="mb-2">
+                {{ form.amount.label_tag }}
+                {{ form.amount }}
+                {{ form.amount.errors }}
+            </div>
+            <div class="mb-2">
+                {{ form.category.label_tag }}
+                {{ form.category }}
+                {{ form.category.errors }}
+            </div>
+            <div class="mb-2">
+                {{ form.financier.label_tag }}
+                {{ form.financier }}
+                {{ form.financier.errors }}
+            </div>
+            <div class="mb-2">
+                {{ form.installments.label_tag }}
+                {{ form.installments }}
+                {{ form.installments.errors }}
+            </div>
+            <div class="mb-2">
+                {{ form.installments_paid.label_tag }}
+                {{ form.installments_paid }}
+                {{ form.installments_paid.errors }}
+            </div>
+            <div class="justify-content-end d-flex gap-2">
+                <button
+                    class="btn btn-action btn-outline-danger w-25"
+                    data-bs-toggle="modal"
+                    data-bs-target="#delete-debt-modal"
+                    type="button"
+                >
+                    Deletar
+                </button>
+                <button class="btn btn-action btn-primary w-25" type="submit">Editar</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="modal fade" id="delete-debt-modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Confirmar Exclusão</h1>
+                    <button class="btn-close" data-bs-dismiss="modal" type="button"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Tem certeza que deseja deletar essa dívida?</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-action btn-secondary" data-bs-dismiss="modal" type="button">
+                        Cancelar
+                    </button>
+                    <form action="{% url 'debts:delete' debt.pk %}" method="POST">
+                        {% csrf_token %}
+                        <button class="btn btn-action btn-danger" type="submit">
+                            Deletar
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
