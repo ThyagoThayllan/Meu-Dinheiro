@@ -15,4 +15,10 @@ class Debts(TemplateView):
     template_name = 'debts/debts.html'
 
     def get(self, request: HttpRequest) -> HttpResponse:
-        return render(request, self.template_name)
+        debts = Debt.objects.filter(user=request.user)
+
+        form = DebtForm()
+
+        context = {'debts': debts, 'form': form}
+
+        return render(request, self.template_name, context)
