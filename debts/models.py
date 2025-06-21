@@ -58,7 +58,7 @@ class Debt(Model):
 
     description = CharField('Descrição', max_length=100)
 
-    financier = CharField('Financiador', max_length=55)
+    financier = CharField('Financiador', blank=True, max_length=55, null=True)
 
     installments = IntegerField(
         'Parcelas',
