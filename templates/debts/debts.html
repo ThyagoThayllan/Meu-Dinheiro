@@ -66,7 +66,9 @@
                         <a href="{% url 'debts:edit' debt.pk %}">{{ debt.description }}</a>
                     </td>
                     <td>{{ debt.category_name }}</td>
-                    <td class="text-end">{{ debt.installments_paid }}/{{ debt.installments }}</td>
+                    <td class="text-end" data-order="{{ debt.installments }}">
+                        {{ debt.installments_paid }}/{{ debt.installments }}
+                    </td>
                     <td>{{ debt.installment_amount }}</td>
                     <td>{{ debt.remaining_amount }}</td>
                     <td>{{ debt.amount }}</td>
