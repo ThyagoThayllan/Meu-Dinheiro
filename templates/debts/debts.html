@@ -150,32 +150,69 @@
                     <button class="btn-close" data-bs-dismiss="modal" type="button"></button>
                 </div>
                 <div class="bg-light modal-body">
-                    <div class="border-bottom d-flex gap-3 justify-content-between m-2">
-                        ID: <span id="debt-id"></span>
-                    </div>
-                    <div class="border-bottom d-flex gap-3 justify-content-between m-2">
-                        Descrição: <span class="overflow-auto text-wrap" id="debt-description"></span>
-                    </div>
-                    <div class="border-bottom d-flex gap-3 justify-content-between m-2">
-                        Categoria: <span id="debt-category"></span>
-                    </div>
-                    <div class="border-bottom d-flex gap-3 justify-content-between m-2">
-                        Financiador: <span id="debt-financier"></span>
-                    </div>
-                    <div class="border-bottom d-flex gap-3 justify-content-between m-2">
-                        Parcelas - Pagas/Total: <span id="debt-installments"></span>
-                    </div>
-                    <div class="border-bottom d-flex gap-3 justify-content-between m-2">
-                        Valor da Parcela: <span id="debt-installment-amount"></span>
-                    </div>
-                    <div class="border-bottom d-flex gap-3 justify-content-between m-2">
-                        Valor da Dívida: <span id="debt-amount"></span>
-                    </div>
-                    <div class="border-bottom d-flex gap-3 justify-content-between m-2">
-                        Valor Restante: <span id="debt-remaining-amount"></span>
-                    </div>
-                    <div class="border-bottom d-flex gap-3 justify-content-between m-2">
-                        Status: <span id="debt-status"></span>
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button
+                                aria-controls="debt-chart-tab"
+                                aria-selected="true"
+                                class="nav-link active"
+                                data-bs-target="#debt-chart-tab"
+                                data-bs-toggle="tab"
+                                role="tab"
+                                type="button"
+                            >
+                                Gráfico
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button
+                                aria-controls="debt-details-tab"
+                                aria-selected="false"
+                                class="nav-link"
+                                data-bs-target="#debt-details-tab"
+                                data-bs-toggle="tab"
+                                role="tab"
+                                type="button"
+                            >
+                                Detalhes
+                            </button>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="debt-chart-tab" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+                            <div class="p-3">
+                                <canvas id="debt-chart"></canvas>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="debt-details-tab" role="tabpanel" aria-labelledby="debt-details-tab" tabindex="0">
+                            <div class="border-bottom d-flex gap-3 justify-content-between m-2">
+                                ID: <span id="debt-id"></span>
+                            </div>
+                            <div class="border-bottom d-flex gap-3 justify-content-between m-2">
+                                Descrição: <span class="overflow-auto text-wrap" id="debt-description"></span>
+                            </div>
+                            <div class="border-bottom d-flex gap-3 justify-content-between m-2">
+                                Categoria: <span id="debt-category"></span>
+                            </div>
+                            <div class="border-bottom d-flex gap-3 justify-content-between m-2">
+                                Financiador: <span id="debt-financier"></span>
+                            </div>
+                            <div class="border-bottom d-flex gap-3 justify-content-between m-2">
+                                Parcelas - Pagas/Total: <span id="debt-installments"></span>
+                            </div>
+                            <div class="border-bottom d-flex gap-3 justify-content-between m-2">
+                                Valor da Parcela: <span id="debt-installment-amount"></span>
+                            </div>
+                            <div class="border-bottom d-flex gap-3 justify-content-between m-2">
+                                Valor da Dívida: <span id="debt-amount"></span>
+                            </div>
+                            <div class="border-bottom d-flex gap-3 justify-content-between m-2">
+                                Valor Restante: <span id="debt-remaining-amount"></span>
+                            </div>
+                            <div class="border-bottom d-flex gap-3 justify-content-between m-2">
+                                Status: <span id="debt-status"></span>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="bg-light border-0 modal-footer"></div>
@@ -185,7 +222,9 @@
 {% endblock content %}
 
 {% block scripts %}
+    <script src="{% static 'plugins/chart/chart-4.4.1.min.js' %}"></script>
     <script src="{% static 'plugins/datatables/datatables-2.2.2.min.js' %}"></script>
+    <script src="{% static 'js/chart-configs.js' %}"></script>
     <script src="{% static 'js/datatables-configs.js' %}"></script>
     <script src="{% static 'js/utils.js' %}"></script>
 {% endblock scripts %}
