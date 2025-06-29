@@ -307,6 +307,8 @@
             });
         };
 
+        let debtChart;
+
         $('#debt-detail-modal').on('show.bs.modal', (event) => {
             const detailButton = $(event.relatedTarget);
 
@@ -330,6 +332,18 @@
             $('#debt-installments').text(`${debtInstallmentsPaid}/${debtInstallments}`);
             $('#debt-remaining-amount').text(formatCurrencyToBRL(debtRemainingAmount));
             $('#debt-status').text(debtStatus);
+
+            if (debtChart) debtChart.destroy();
+
+            const normalizedDebtInstallmentAmount = parseFloat(
+                debtInstallmentAmount.replace(',', '.')
+            );
+            const normalizedDebtRemainingAmount = parseFloat(debtRemainingAmount.replace(',', '.'));
+
+            debtChart = createDebtChart(
+                normalizedDebtInstallmentAmount * debtInstallmentsPaid,
+                normalizedDebtRemainingAmount,
+            );
         });
     </script>
 {% endblock scripts_inline %}
