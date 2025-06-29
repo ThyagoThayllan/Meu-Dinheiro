@@ -85,6 +85,10 @@ class Debt(Model):
         related_query_name='debt',
     )
 
+    class Meta:
+        verbose_name = 'Dívida'
+        verbose_name_plural = 'Dívidas'
+
     def __str__(self) -> str:
         return f'{self.id} - {self.description} - {self.amount} - {self.status}'
 
