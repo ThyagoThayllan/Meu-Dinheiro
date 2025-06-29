@@ -86,7 +86,7 @@ class Debt(Model):
     )
 
     def __str__(self) -> str:
-        return f'{self.id} | {self.financier} | {self.amount} | {self.status}'
+        return f'{self.id} - {self.description} - {self.amount} - {self.status}'
 
     @property
     def category_name(self):
