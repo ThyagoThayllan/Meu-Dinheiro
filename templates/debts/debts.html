@@ -61,10 +61,8 @@
                             <i class="bi bi-eye"></i>
                         </button>
                     </td>
-                    <td>{{ debt.id }}</td>
-                    <td class="debt-description-col">
-                        <a href="{% url 'debts:edit' debt.pk %}">{{ debt.description }}</a>
-                    </td>
+                    <td><a href="{% url 'debts:edit' debt.pk %}">{{ debt.id }}</a></td>
+                    <td class="debt-description-col">{{ debt.description }}</td>
                     <td>{{ debt.category_name }}</td>
                     <td class="text-end" data-order="{{ debt.installments }}">
                         {{ debt.installments_paid }}/{{ debt.installments }}
