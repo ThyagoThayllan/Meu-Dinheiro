@@ -159,3 +159,14 @@ table tbody tr td {
     background-color: var(--primary) !important;
     background-image: none !important;
 }
+
+.nav-tabs .nav-link {
+    color: var(--primary);
+    font-weight: 500;
+}
+
+.nav-tabs .nav-link.active {
+    background-color: var(--light);
+    border-bottom-color: var(--light);
+    color: var(--black);
+}
