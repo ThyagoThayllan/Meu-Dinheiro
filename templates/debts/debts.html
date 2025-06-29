@@ -287,29 +287,25 @@
         $('#debt-detail-modal').on('show.bs.modal', (event) => {
             const detailButton = $(event.relatedTarget);
 
-            const debtAmount = formatCurrencyToBRL(detailButton.data('debt-amount'));
+            const debtAmount = detailButton.data('debt-amount');
             const debtCategory = detailButton.data('debt-category');
             const debtDescription = detailButton.data('debt-description');
             const debtFinancier = detailButton.data('debt-financier');
             const debtId = detailButton.data('debt-id');
-            const debtInstallmentAmount = formatCurrencyToBRL(
-                detailButton.data('debt-installment-amount')
-            );
+            const debtInstallmentAmount = detailButton.data('debt-installment-amount');
             const debtInstallments = detailButton.data('debt-installments');
             const debtInstallmentsPaid = detailButton.data('debt-installments-paid');
-            const debtRemainingAmount = formatCurrencyToBRL(
-                detailButton.data('debt-remaining-amount')
-            );
+            const debtRemainingAmount = detailButton.data('debt-remaining-amount');
             const debtStatus = detailButton.data('debt-status');
 
-            $('#debt-amount').text(debtAmount);
+            $('#debt-amount').text(formatCurrencyToBRL(debtAmount));
             $('#debt-category').text(debtCategory);
             $('#debt-description').text(debtDescription);
-            $('#debt-financier').text(debtFinancier);
+            $('#debt-financier').text(debtFinancier ? debtFinancier : '-');
             $('#debt-id').text(debtId);
-            $('#debt-installment-amount').text(debtInstallmentAmount);
+            $('#debt-installment-amount').text(formatCurrencyToBRL(debtInstallmentAmount));
             $('#debt-installments').text(`${debtInstallmentsPaid}/${debtInstallments}`);
-            $('#debt-remaining-amount').text(debtRemainingAmount);
+            $('#debt-remaining-amount').text(formatCurrencyToBRL(debtRemainingAmount));
             $('#debt-status').text(debtStatus);
         });
     </script>
