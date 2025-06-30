@@ -1,3 +1,23 @@
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
-# Register your models here.
+from authentication.models import User
+
+
+@admin.register(User)
+class UserAdmin(BaseUserAdmin):
+    list_display = [
+        'id',
+        'username',
+        'email',
+        'cpf',
+        'is_active',
+        'is_staff',
+        'is_superuser',
+        'last_login',
+        'date_joined',
+    ]
+
+    ordering = ['-last_login']
+
+    search_fields = ['cpf', 'email', 'id', 'username']
