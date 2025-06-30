@@ -93,7 +93,7 @@ class Transaction(Model):
     )
 
     def __str__(self) -> str:
-        return f'{self.destination} | {self.amount} | {self.transaction_type_name}'
+        return f'{self.id} - {self.destination} - {self.amount} - {self.transaction_type_name}'
 
     @property
     def category_name(self):
