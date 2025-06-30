@@ -92,6 +92,10 @@ class Transaction(Model):
         related_query_name='transaction',
     )
 
+    class Meta:
+        verbose_name = 'Transação'
+        verbose_name_plural = 'Transações'
+
     def __str__(self) -> str:
         return f'{self.id} - {self.destination} - {self.amount} - {self.transaction_type_name}'
 
