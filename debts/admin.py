@@ -11,9 +11,9 @@ class DebtAdmin(ModelAdmin):
         'description',
         'category',
         'amount',
+        'is_paid',
         'updated_at',
         'created_at',
-        'is_paid',
     ]
 
     list_filter = ['category', 'updated_at', 'created_at', 'is_paid']
