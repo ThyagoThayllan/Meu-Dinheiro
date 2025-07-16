@@ -1,6 +1,13 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block title %}Editar Transação{% endblock title %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap-datepicker/bootstrap-datepicker-1.10.0.min.css' %}">
+    <link rel="stylesheet" href="{% static 'plugins/datatables/datatables-2.2.2.min.css' %}">
+{% endblock styles %}
 
 {% block content %}
     <h1>Editar Transação</h1>
@@ -125,3 +132,17 @@
         </div>
     </div>
 {% endblock content %}
+
+{% block scripts %}
+    <script src="{% static 'plugins/bootstrap-datepicker/bootstrap-datepicker-1.10.0.min.js' %}"></script>
+    <script src="{% static 'plugins/bootstrap-datepicker/bootstrap-datepicker.pt-BR.min.js' %}"></script>
+    <script src="{% static 'js/datepicker-configs.js' %}"></script>
+{% endblock scripts %}
+
+{% block scripts_inline %}
+    <script>
+        const $dateInput = $('#{{ form.date.id_for_label }}');
+
+        $dateInput.datepicker(datepickerByDay);
+    </script>
+{% endblock scripts_inline %}
