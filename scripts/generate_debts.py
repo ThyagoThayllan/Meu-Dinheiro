@@ -24,17 +24,22 @@ User = get_user_model()
 
 users = User.objects.all()
 
-for _ in range(100):
+QUANTITY_OF_DEBTS_TO_GENERATE = input('Quantas Dívidas deseja gerar? > ')
+
+if not QUANTITY_OF_DEBTS_TO_GENERATE.isdigit():
+    raise ValueError('ERRO - Apenas números são aceitos como resposta.')
+
+for _ in range(int(QUANTITY_OF_DEBTS_TO_GENERATE)):
     installments = random.randint(1, 120)
     installments_paid = random.randint(1, installments)
     is_paid = installments == installments_paid
 
     Debt.objects.create(
         amount=fake.pydecimal(
-            left_digits=5, right_digits=2, positive=True, min_value=500, max_value=100000
+            left_digits=5, right_digits=2, max_value=100000, min_value=500, positive=True,
         ),
         category=random.choice(Debt.DEBT_CATEGORIES)[0],
-        description=fake.bank_country(),
+        description=fake.name(),
         financier=fake.bank_country(),
         installments=installments,
         installments_paid=installments_paid,
