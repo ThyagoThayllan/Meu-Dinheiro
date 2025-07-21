@@ -35,6 +35,7 @@
                 <th class="align-middle">Valor Restante</th>
                 <th class="align-middle">Valor da Dívida</th>
                 <th class="align-middle">Status</th>
+                <th class="align-middle">Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -61,7 +62,7 @@
                             <i class="bi bi-eye"></i>
                         </button>
                     </td>
-                    <td><a href="{% url 'debts:edit' debt.pk %}">{{ debt.id }}</a></td>
+                    <td>{{ debt.id }}</td>
                     <td class="debt-description-col">{{ debt.description }}</td>
                     <td>{{ debt.category_name }}</td>
                     <td class="text-end" data-order="{{ debt.installments }}">
@@ -71,6 +72,26 @@
                     <td>{{ debt.remaining_amount }}</td>
                     <td>{{ debt.amount }}</td>
                     <td>{{ debt.status }}</td>
+                    <td class="d-flex gap-2">
+                        <a
+                            class="bg-primary btn-action rounded text-center text-white w-100"
+                            href="{% url 'debts:edit' debt.pk %}"
+                            role="button"
+                            title="Editar"
+                        >
+                            <i class="bi bi-pencil-square"></i>
+                        </a>
+                        <button
+                            class="bg-danger border-0 btn-action rounded text-center text-white w-100"
+                            data-bs-target="#delete-debt-modal"
+                            data-bs-toggle="modal"
+                            data-debt-id="{{ debt.pk }}"
+                            title="Deletar"
+                            type="button"
+                        >
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>
