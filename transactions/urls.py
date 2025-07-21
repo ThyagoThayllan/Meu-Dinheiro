@@ -14,5 +14,5 @@ urlpatterns = [
     path('cadastrar/', NewTransaction.as_view(), name='register'),
     path('<int:pk>/editar/', EditTransaction.as_view(), name='edit'),
     path('<int:pk>/deletar/', DeleteTransaction.as_view(), name='delete'),
-    path('ajax/<str:period>/', TransactionsAjax.as_view(), name='transactions_ajax'),
+    path('ajax/<str:period>/', TransactionsAjax.as_view(), name='transactions-ajax'),
 ]
