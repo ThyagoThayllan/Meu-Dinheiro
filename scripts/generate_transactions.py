@@ -25,7 +25,12 @@ User = get_user_model()
 
 users = User.objects.all()
 
-for _ in range(100):
+QUANTITY_OF_TRANSACTIONS_TO_GENERATE = input('Quantas Transações deseja gerar? > ')
+
+if not QUANTITY_OF_TRANSACTIONS_TO_GENERATE.isdigit():
+    raise ValueError('ERRO - Apenas números são aceitos como resposta.')
+
+for _ in range(int(QUANTITY_OF_TRANSACTIONS_TO_GENERATE)):
     Transaction.objects.create(
         amount=fake.pydecimal(
             left_digits=4,
