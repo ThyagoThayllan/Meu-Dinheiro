@@ -256,20 +256,20 @@
                         className: 'text-center',
                         data: null,
                         orderable: false,
-                        render: (_data, _type, row) => {
+                        render: (data, _type, _row) => {
                             return `
                                 <button
                                     class="btn-action bg-transparent rounded text-primary"
                                     data-bs-target="#transactionDetailModal"
                                     data-bs-toggle="modal"
-                                    data-transaction-id="${row.id}"
-                                    data-transaction-amount="${row.amount}"
-                                    data-transaction-type="${row.transaction_type === {{ Transaction.EXPENSE }} ? 'Saída' : 'Entrada'}"
-                                    data-transaction-category="${transactionCategories[row.category]}"
-                                    data-transaction-destination="${row.destination || '-'}"
-                                    data-transaction-description="${row.description || '-'}"
-                                    data-transaction-date="${row.date || '-'}"
-                                    data-transaction-is-paid="${row.is_paid ? 'Sim' : 'Não'}"
+                                    data-transaction-id="${data.id}"
+                                    data-transaction-amount="${data.amount}"
+                                    data-transaction-type="${data.transaction_type === {{ Transaction.EXPENSE }} ? 'Saída' : 'Entrada'}"
+                                    data-transaction-category="${transactionCategories[data.category]}"
+                                    data-transaction-destination="${data.destination || '-'}"
+                                    data-transaction-description="${data.description || '-'}"
+                                    data-transaction-date="${data.date || '-'}"
+                                    data-transaction-is-paid="${data.is_paid ? 'Sim' : 'Não'}"
                                     title="Detalhes"
                                     type="button"
                                 >
