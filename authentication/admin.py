@@ -18,6 +18,8 @@ class UserAdmin(BaseUserAdmin):
         'date_joined',
     ]
 
+    list_per_page = 100
+
     ordering = ['-last_login']
 
     search_fields = ['cpf', 'email', 'id', 'username']

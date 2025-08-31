@@ -18,7 +18,7 @@ class DebtAdmin(ModelAdmin):
 
     list_filter = ['category', 'updated_at', 'created_at', 'is_paid']
 
-    list_per_page = 25
+    list_per_page = 100
 
     ordering = ['-created_at']
 

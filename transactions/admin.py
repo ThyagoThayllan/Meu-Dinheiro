@@ -20,7 +20,7 @@ class TransactionAdmin(ModelAdmin):
 
     list_filter = ['is_paid', 'category', 'transaction_type', 'date', 'created_at', 'updated_at']
 
-    list_per_page = 25
+    list_per_page = 100
 
     ordering = ['-created_at']
 
