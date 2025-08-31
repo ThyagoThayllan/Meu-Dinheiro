@@ -31,7 +31,6 @@ INSTALLED_APPS = [
     'authentication',
     'dashboard',
     'debts',
-    'persons',
     'transactions',
 ]
 

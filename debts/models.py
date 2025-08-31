@@ -26,15 +26,13 @@ class Debt(Model):
     CREDIT_CARD = 3
     FINANCING = 4
     LOAN = 5
-    PERSONAL = 6
-    SPECIAL_CHECK = 7
-    OTHERS = 8
+    SPECIAL_CHECK = 6
+    OTHERS = 7
 
     DEBT_CATEGORIES = [
         (CREDIT_CARD, 'Cartão de Crédito'),
         (FINANCING, 'Financiamento'),
         (LOAN, 'Empréstimo'),
-        (PERSONAL, 'Pessoal'),
         (SPECIAL_CHECK, 'Cheque Especial'),
         (OTHERS, 'Outros'),
     ]

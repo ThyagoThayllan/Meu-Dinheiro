@@ -9,5 +9,4 @@ urlpatterns = [
     path('', include('dashboard.urls')),
     path('transacoes/', include('transactions.urls')),
     path('dividas/', include('debts.urls')),
-    path('pessoas/', include('persons.urls')),
 ]
