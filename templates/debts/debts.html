@@ -47,6 +47,7 @@
                             data-bs-target="#debt-detail-modal"
                             data-bs-toggle="modal"
                             data-debt-amount="{{ debt.amount }}"
+                            data-debt-amount-paid="{{ debt.amount_paid }}"
                             data-debt-remaining-amount="{{ debt.remaining_amount }}"
                             data-debt-category="{{ debt.category_name }}"
                             data-debt-description="{{ debt.description }}"
@@ -228,6 +229,9 @@
                                 Valor da Dívida: <span id="debt-amount"></span>
                             </div>
                             <div class="border-bottom d-flex gap-3 justify-content-between m-2">
+                                Valor Pago: <span id="debt-amount-paid"></span>
+                            </div>
+                            <div class="border-bottom d-flex gap-3 justify-content-between m-2">
                                 Valor Restante: <span id="debt-remaining-amount"></span>
                             </div>
                             <div class="border-bottom d-flex gap-3 justify-content-between m-2">
@@ -363,6 +367,7 @@
             const detailButton = $(event.relatedTarget);
 
             const debtAmount = detailButton.data('debt-amount');
+            const debtAmountPaid = detailButton.data('debt-amount-paid');
             const debtCategory = detailButton.data('debt-category');
             const debtDescription = detailButton.data('debt-description');
             const debtFinancier = detailButton.data('debt-financier');
@@ -374,6 +379,7 @@
             const debtStatus = detailButton.data('debt-status');
 
             $('#debt-amount').text(formatCurrencyToBRL(debtAmount));
+            $('#debt-amount-paid').text(formatCurrencyToBRL(debtAmountPaid));
             $('#debt-category').text(debtCategory);
             $('#debt-description').text(debtDescription);
             $('#debt-financier').text(debtFinancier ? debtFinancier : '-');
@@ -385,13 +391,11 @@
 
             if (debtChart) debtChart.destroy();
 
-            const normalizedDebtInstallmentAmount = parseFloat(
-                debtInstallmentAmount.replace(',', '.')
-            );
+            const normalizedDebtAmountPaid = parseFloat(debtAmountPaid.replace(',', '.'));
             const normalizedDebtRemainingAmount = parseFloat(debtRemainingAmount.replace(',', '.'));
 
             debtChart = createDebtChart(
-                normalizedDebtInstallmentAmount * debtInstallmentsPaid,
+                normalizedDebtAmountPaid,
                 normalizedDebtRemainingAmount,
             );
         });
