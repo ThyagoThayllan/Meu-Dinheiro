@@ -91,6 +91,10 @@ class Debt(Model):
         return f'{self.id} - {self.description} - {self.amount} - {self.status}'
 
     @property
+    def amount_paid(self):
+        return self.installment_amount * self.installments_paid
+
+    @property
     def category_name(self):
         return self.get_category_display()
 
