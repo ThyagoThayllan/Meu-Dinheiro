@@ -1,16 +1,15 @@
 {% extends "base.html" %}
 
-{% block title %}Painel Financeiro{% endblock title %}
+{% block title %}Meu Dinheiro{% endblock title %}
 
 {% block content %}
-    <h1>Painel Financeiro</h1>
+    <h1>Meu Dinheiro</h1>
     <hr>
 
-    {% if request.user.is_authenticated %}
-        <p>Bem vindo, {{ request.user.full_name }}!</p>
-    {% else %}
-        <p>Bem vindo ao <strong>Meu Dinheiro</strong>!</p>
-    {% endif %}
+    <p>
+        Acompanhe suas <strong class="text-primary">Transações</strong> e
+        <strong class="text-primary">Dívidas</strong> em um só lugar.
+    </p>
 {% endblock content %}
 
 {% block scripts %}
