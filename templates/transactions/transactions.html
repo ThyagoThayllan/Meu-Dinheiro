@@ -192,7 +192,7 @@
 {% block scripts_inline %}
     <script>
         const languageDataTableURL = '{% static "plugins/datatables/pt-BR.json" %}';
-        const transactionsAjaxURL = '{% url "transactions:transactions-ajax" "_PERIOD_" %}';
+        const transactionsAjaxURL = '{% url "transactions:ajax-list" "_PERIOD_" %}';
 
         const transactionCategories = JSON.parse('{{ CATEGORIES|safe }}');
 

@@ -5,7 +5,6 @@ from django.contrib import messages
 from django.http import HttpRequest
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
-from django.http import JsonResponse
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.views import View
@@ -109,17 +108,3 @@ class Transactions(TemplateView):
         }
 
         return render(request, self.template_name, context)
-
-
-class TransactionsAjax(View):
-    def get(self, request: HttpRequest, period: str) -> JsonResponse:
-        if period:
-            month, year = period.strip().split('-')
-        else:
-            month, year = datetime.today().strftime('%m-%Y').split('-')
-
-        transactions = Transaction.objects.filter(
-            date__month=month, date__year=year, user=request.user
-        ).values()
-
-        return JsonResponse({'data': list(transactions)})
