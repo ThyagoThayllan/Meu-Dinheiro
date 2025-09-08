@@ -68,18 +68,6 @@ class EditTransaction(TemplateView):
         return render(request, self.template_name, context)
 
 
-class NewTransaction(View):
-    def post(self, request: HttpRequest) -> HttpResponse | HttpResponseRedirect:
-        form = TransactionForm(data=request.POST)
-
-        if not form.is_valid():
-            return render(request, 'transactions/transactions.html', {'form': form})
-
-        Transaction.objects.create(**form.cleaned_data, user=request.user)
-
-        return redirect('transactions:transactions')
-
-
 class Transactions(TemplateView):
     template_name = 'transactions/transactions.html'
 
@@ -108,3 +96,13 @@ class Transactions(TemplateView):
         }
 
         return render(request, self.template_name, context)
+
+    def post(self, request: HttpRequest) -> HttpResponse | HttpResponseRedirect:
+        form = TransactionForm(data=request.POST)
+
+        if not form.is_valid():
+            return render(request, 'transactions/transactions.html', {'form': form})
+
+        Transaction.objects.create(**form.cleaned_data, user=request.user)
+
+        return redirect('transactions:transactions')
