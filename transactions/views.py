@@ -14,7 +14,7 @@ from .models import Transaction
 from .forms import TransactionForm
 
 
-class DeleteTransaction(View):
+class TransactionDelete(View):
     def post(self, request: HttpRequest, pk: int) -> HttpResponseRedirect:
         try:
             transaction = Transaction.objects.get(pk=pk)
@@ -29,7 +29,7 @@ class DeleteTransaction(View):
         return redirect('transactions:transactions')
 
 
-class EditTransaction(TemplateView):
+class TransactionEdit(TemplateView):
     template_name = 'transactions/edit-transaction.html'
 
     def get(self, request: HttpRequest, pk: int) -> HttpResponse | HttpResponseRedirect:
