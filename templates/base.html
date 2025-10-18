@@ -20,14 +20,16 @@
     </head>
 
     <body>
-        {% include "header.html" %}
-
         <div class="page">
             {% include "menu.html" %}
 
-            <main class="main">
-                {% block content %}{% endblock content %}
-            </main>
+            <div class="d-flex flex-column flex-grow-1">
+                {% include "header.html" %}
+
+                <main class="main">
+                    {% block content %}{% endblock content %}
+                </main>
+            </div>
         </div>
 
         <script>
