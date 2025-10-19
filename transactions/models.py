@@ -58,7 +58,7 @@ class Transaction(Model):
 
     created_at = DateTimeField('Criado em', auto_now_add=True)
 
-    date = DateField('Data', blank=True, null=True)
+    date = DateField('Data')
 
     description = CharField('Descrição', blank=True, max_length=255)
 
