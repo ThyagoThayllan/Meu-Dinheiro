@@ -20,15 +20,17 @@
     </head>
 
     <body>
-        <div class="page">
+        <div class="d-flex flex-grow-1 overflow-auto">
             {% include "menu.html" %}
 
-            <div class="d-flex flex-column flex-grow-1">
-                {% include "header.html" %}
+            <div class="page">
+                <div class="d-flex flex-column flex-grow-1 w-100">
+                    {% include "header.html" %}
 
-                <main class="main">
-                    {% block content %}{% endblock content %}
-                </main>
+                    <main class="main">
+                        {% block content %}{% endblock content %}
+                    </main>
+                </div>
             </div>
         </div>
 
