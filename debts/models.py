@@ -17,10 +17,7 @@ class Debt(Model):
     ACTIVE = 1
     INACTIVE = 2
 
-    DEBT_STATUS = [
-        (ACTIVE, 'Ativa'),
-        (INACTIVE, 'Inativa'),
-    ]
+    DEBT_STATUS = ((ACTIVE, 'Ativa'), (INACTIVE, 'Inativa'))
 
     # Debt categories
     CREDIT_CARD = 3
@@ -29,13 +26,13 @@ class Debt(Model):
     SPECIAL_CHECK = 6
     OTHERS = 7
 
-    DEBT_CATEGORIES = [
+    DEBT_CATEGORIES = (
         (CREDIT_CARD, 'Cartão de Crédito'),
         (FINANCING, 'Financiamento'),
         (LOAN, 'Empréstimo'),
         (SPECIAL_CHECK, 'Cheque Especial'),
         (OTHERS, 'Outros'),
-    ]
+    )
 
     MAXIMUM_FINANCING_TERM = 420
     MINIMUM_FINANCING_TERM = 1

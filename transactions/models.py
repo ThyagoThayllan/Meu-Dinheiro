@@ -16,10 +16,7 @@ class Transaction(Model):
     EXPENSE = 1
     INCOME = 2
 
-    TRANSACTION_TYPES = [
-        (EXPENSE, 'Saída'),
-        (INCOME, 'Entrada'),
-    ]
+    TRANSACTION_TYPES = ((EXPENSE, 'Saída'), (INCOME, 'Entrada'))
 
     # Transaction categories
     CLOTHING = 1
@@ -36,7 +33,7 @@ class Transaction(Model):
     TRANSPORT = 12
     OTHERS = 13
 
-    CATEGORIES = [
+    CATEGORIES = (
         (CLOTHING, 'Vestuário'),
         (DEBIT, 'Dívidas'),
         (EDUCATION, 'Educação'),
@@ -50,7 +47,7 @@ class Transaction(Model):
         (TECHNOLOGY, 'Tecnologia'),
         (TRANSPORT, 'Transporte'),
         (OTHERS, 'Outros'),
-    ]
+    )
 
     amount = DecimalField('Valor', decimal_places=2, max_digits=10)
 
