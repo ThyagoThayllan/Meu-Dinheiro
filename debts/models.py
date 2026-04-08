@@ -13,7 +13,7 @@ from django.db.models import IntegerField
 
 
 class Debt(Model):
-    """Debt status"""
+    # Debt status
     ACTIVE = 1
     INACTIVE = 2
 
@@ -22,7 +22,7 @@ class Debt(Model):
         (INACTIVE, 'Inativa'),
     ]
 
-    """Debt categories"""
+    # Debt categories
     CREDIT_CARD = 3
     FINANCING = 4
     LOAN = 5
@@ -72,10 +72,6 @@ class Debt(Model):
 
     updated_at = DateTimeField('Editado em', auto_now=True)
 
-    """User related to a Debt.
-
-        - User has multiple Debts.
-    """
     user = ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=CASCADE,

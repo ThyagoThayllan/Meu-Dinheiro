@@ -12,7 +12,7 @@ from django.db.models import DecimalField
 
 
 class Transaction(Model):
-    """Transaction types"""
+    # Transaction types
     EXPENSE = 1
     INCOME = 2
 
@@ -21,7 +21,7 @@ class Transaction(Model):
         (INCOME, 'Entrada'),
     ]
 
-    """Transaction categories"""
+    # Transaction categories
     CLOTHING = 1
     DEBIT = 2
     EDUCATION = 3
@@ -64,7 +64,7 @@ class Transaction(Model):
 
     destination = CharField('Destino', max_length=55)
 
-    # TODO(@ThyagoThayllan):    Transaction file field.
+    # TODO (@ThyagoThayllan): Transaction file field.
     #   document = FileField()
 
     is_paid = BooleanField('Pago?', default=True)
@@ -73,10 +73,6 @@ class Transaction(Model):
 
     updated_at = DateTimeField('Editado em', auto_now=True)
 
-    """User related to a Transaction.
-
-        - User has multiple Transactions.
-    """
     user = ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=CASCADE,
