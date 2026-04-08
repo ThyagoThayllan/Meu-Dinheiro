@@ -15,10 +15,7 @@ class User(AbstractUser):
         unique=True,
     )
 
-    email = EmailField(
-        'E-mail',
-        unique=True,
-    )
+    email = EmailField('E-mail', unique=True)
 
     first_name = CharField('Nome', max_length=55)
 
