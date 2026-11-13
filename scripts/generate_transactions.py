@@ -41,8 +41,8 @@ for _ in range(int(QUANTITY_OF_TRANSACTIONS_TO_GENERATE)):
         ),
         category=random.choice(Transaction.CATEGORIES)[0],
         date=fake.date_between(
-            end_date=date(day=31, month=12, year=2025),
-            start_date=date(day=1, month=1, year=2025),
+            end_date=date(day=31, month=12, year=2026),
+            start_date=date(day=1, month=1, year=2026),
         ),
         description=fake.bank_country(),
         destination=fake.name(),
